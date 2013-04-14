@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="span10">
+		<div class="row-fluid">
+			<div class="span3">            
+				<h2>Missing Players</h2>
+				<div  style="height:150px;overflow:scroll;overflow-y:scroll;overflow-x:hidden">
+					<ul id="missing_players_list" class="unstyled">
+<!--
+						{% for player in missingPlayers %}
+							<li playertype="missingplayers" id="{{player.playername}}">{{player.playername}}</li>
+						{% endfor %}
+-->
+					</ul>
+				</div>
+			</div><!--/span3-->
+            
+			<div class="span8">
+				<h2>Possible Matches</h2>
+				<table id="possible_matches" class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Pos</th>
+							<th>First Year</th>
+							<th>Last Year</th>		
+							<th></th>		
+						</tr>
+					</thead>
+					<tbody id="match_list">
+					</tbody>
+				</table>
+			</div><!--/span8-->
+		</div><!--/row-->
+        </div><!--/span10-->
+{% endblock %}
+
+
+{% block page_javascript %}
+<script type="text/javascript">
+
+function getMissingRowFromData(playername, data) {
+	var rowstring;
+	rowstring = 'playertype="possible_match" ' +
+		        'displayName="' + playername + '" ' +
+			'firstname="' + data.firstname + '" ' +
+                        'lastname="' + data.lastname + '" ' +
+			'startyear="' + data.firstyear + '" ' +
+			'endyear="' + data.lastyear + '" ' +
+			'position="' + data.position + '" ' +
+			'bbreflink="' + data.url + '"';
+
+	return rowstring; 
+}
+
+function getPossibleMatches(playername, playerid) {
+	$.getJSON('/nabl/rotowireSearch?playername='+playername, function(data) {
+		var items = [];
+		$.each(data, function() {
+			items.push('<td>' + this.firstname + ' ' + this.lastname + '</td><td>' + this.position +
+				'</td><td>' + this.firstyear + '</td><td>' + this.lastyear + '</td>' +
+				'<td><button button_type="addPlayer" class="btn btn-mini btn-primary" ' + getMissingRowFromData(playername, this) + 
+				'>Add</button></td></tr>');
+		});
+		$('#match_list').replaceWith(
+			'<tbody id="match_list">' + items.join('') + '<tbody>'
+		);
+
+		$('button[button_type="addPlayer"]')
+		{% if mode == 'rotowire' %}
+		.click(function() {
+			createPlayer($(this).attr("displayname"), $(this).attr("firstname"), $(this).attr("lastname"), $(this).attr("startyear"), $(this).attr("endyear"), $(this).attr("position"),$(this).attr("bbreflink"));
+   		});
+		{% endif %}
+		{% if mode == 'bbreflink' %}
+		.click(function() {
+			updatePlayer(playerid, $(this).attr("displayname"), $(this).attr("firstname"), $(this).attr("lastname"), $(this).attr("startyear"), $(this).attr("endyear"), $(this).attr("position"),$(this).attr("bbreflink"));
+   		});
+		{% endif %}
+	});
+}
+
+$(document).ready(function() {
+
+	{% if mode == 'rotowire' %}
+	$.getJSON('/api/v1/RotowireMissing/?format=json&limit=1000', function(data) { 
+		var items = [];
+  		$.each(data.objects, function() {
+    			items.push('<li playertype="missingplayers" id="' + this.playername + '">' + this.playername + '</li>');
+  		});
+
+	  	$('#missing_players_list').replaceWith(
+    			'<ul id="missing_players_list" class="unstyled">' + items.join('') + '</ul>'
+		);
+
+
+		$('li[playertype="missingplayers"]')
+		.click(function() {
+			$('li[playertype="missingplayers"]').removeClass("li_selected");
+			$(this).addClass("li_selected");
+			getPossibleMatches(this.id);
+   		});
+
+	});
+	{% endif %}
+	{% if mode == 'bbreflink' %}
+	$.getJSON('/api/v1/Player/?format=json&limit=1000&bbreflink=empty', function(data) { 
+		var items = [];
+  		$.each(data.objects, function() {
+    			items.push('<li playertype="missingplayers" displayname="' + this.displayname + '" id="' + this.id + '">' + this.displayname + '</li>');
+  		});
+
+	  	$('#missing_players_list').replaceWith(
+    			'<ul id="missing_players_list" class="unstyled">' + items.join('') + '</ul>'
+		);
+
+
+		$('li[playertype="missingplayers"]')
+		.click(function() {
+			$('li[playertype="missingplayers"]').removeClass("li_selected");
+			$(this).addClass("li_selected");
+			getPossibleMatches($(this).attr("displayname"), this.id);
+   		});
+
+	});
+	{% endif %}
+
+ });
+
+function createPlayer(displayname, firstname, lastname, startyear, endyear, position, bbreflink) {
+
+	var fulllink = "http://www.baseball-reference.com" + bbreflink;
+	if (position.indexOf("Pitcher") != -1) {
+		position = 'P';
+	} else {
+	position = '';
+	}
+
+	var data = JSON.stringify({
+    		"bbreflink": fulllink, 
+		"displayname": displayname,
+		"endyear": endyear,
+		"firstname": firstname,
+		"lastname": lastname,
+		"position": position,
+		"startyear": startyear 
+	});	
+	
+	sendCreatePlayer(data);
+}
+
+function updatePlayer(id, displayname, firstname, lastname, startyear, endyear, position, bbreflink) {
+
+	var fulllink = "http://www.baseball-reference.com" + bbreflink;
+	if (position.indexOf("Pitcher") != -1) {
+		position = 'P';
+	} else {
+	position = '';
+	}
+
+	var data = JSON.stringify({
+    		"bbreflink": fulllink, 
+		"endyear": endyear,
+		"firstname": firstname,
+		"lastname": lastname,
+		"position": position,
+		"startyear": startyear 
+	});	
+	
+	sendUpdatePlayer(id, data);
+}
+
+function sendCreatePlayer(data) {
+
+	$.ajax({
+  		type: "POST",
+  		url: '/api/v1/Player/', 
+		contentType: 'application/json',
+  		data: data 
+	}).done(function( msg ) {
+  		alert( "Player created: " + msg );
+	});
+
+}
+
+function sendUpdatePlayer(id, data) {
+
+	$.ajax({
+  		type: "PUT",
+  		url: '/api/v1/Player/' + id +'/', 
+		contentType: 'application/json',
+  		data: data 
+	}).done(function( msg ) {
+	  	$('button[button_type="addPlayer"]').replaceWith(
+    			'<button button_type="addPlayer" class="btn btn-mini btn-success">Saved</button>'
+		);
+	});
+
+}
+
+
+
+</script>
+
+{% endblock %}
+

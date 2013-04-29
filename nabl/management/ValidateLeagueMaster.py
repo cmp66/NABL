@@ -105,7 +105,7 @@ class LeagueMaster():
     
 if __name__ == '__main__':
     master = LeagueMaster()
-    master.loadMasterFile(u'/Users/carlphil/Projects/NABL/nabl/NABL2013 Master.xlsx')
+    master.loadMasterFile(u'/Users/carlphil/Projects/NABL/nabl/NABL2013_Master.xlsx')
     teams = master.getTeamList()
     master.validatePlayersInFile(teams, 2013, 2011)
     

@@ -10,10 +10,10 @@ ADMINS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'NABL-DEV',            # Or path to database file if using sqlite3.
+        'NAME': 'NABL',            # Or path to database file if using sqlite3.
         'USER': 'sbaapba',             # Not used with sqlite3.
         'PASSWORD': 'apba',         # Not used with sqlite3.
-        'HOST': '192.168.1.140',             # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': '192.168.1.7',             # Set to empty string for localhost. Not used with sqlite3.
         'PORT': ''             # Set to empty string for default. Not used with sqlite3.
     }
 }

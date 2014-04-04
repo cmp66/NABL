@@ -33,5 +33,5 @@ def migrateMissingRecords(requiredYear):
             
 
   
-migrateMissingRecords(2011)      
+migrateMissingRecords(2012)      
         

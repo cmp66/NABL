@@ -13,7 +13,7 @@ import re
 def admin(request):  
     adminMode = request.GET.get('mode', 'missing-link')
     
-    missingPlayers = Rotowiremissing.objects.values('playername').distinct()
+    missingPlayers = Rotowiremissing.objects.values('playername').distinct('playername')
     for player in missingPlayers:
         id = re.sub(r' ', "_", player['playername'])
         player['id'] = id

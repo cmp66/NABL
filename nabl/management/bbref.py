@@ -4,7 +4,7 @@ import re
 class SiteSearch():
 
         def getPosition(self, htmlResponse):
-            positionMatch = re.search(r'<strong>Positio.*</strong>(.*)', htmlResponse)
+            positionMatch = re.search(r'<strong>Positio.*itemprop="role">(.*)</span>', htmlResponse)
             
             if positionMatch:
                 position = positionMatch.group(1)
@@ -43,7 +43,7 @@ class SiteSearch():
         def getPlayerDataFromPage(self, htmlResponse):      
             #print htmlResponse
             #pattern = re.compile('<h1 class="float_left">(\w*)\s([\w\s]*)</h1>', re.UNICODE)
-            name = re.search(r'<span class="bold_text xx_large_text">(.*?)\s(.*?)</span>', htmlResponse)
+            name = re.search(r'<span itemprop="name" class="bold_text xx_large_text">(.*?)\s(.*?)</span>', htmlResponse)
             #name = re.search(r'<h1 class="float_left">(.*?)\s(.*?)</h1>', htmlResponse)
             firstname = name.group(1)
             lastname = name.group(2)

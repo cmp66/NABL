@@ -6,6 +6,7 @@ Created on Mar 18, 2012
 import mechanize
 import cookielib
 import re
+import urllib
 from time import sleep
 from nabladmin.models import Players
 from nabladmin.models import Rotowire
@@ -89,6 +90,13 @@ class Browser():
         text2.replace('"', '\\"').replace("'", "\\'")
         #text1.replace(u"\uFFFD","\\'")
         #text2.replace(u"\uFFFD","\\'")
+                
+        try:
+            urllib.quote(text1.encode('utf-8'))
+            urllib.quote(text2.encode('utf-8'))
+        except UnicodeDecodeError:
+            transaction.commit()
+            return True
         
         try:
             player = Players.objects.get(displayname__exact=name, endyear__gte=requiredYear)
@@ -117,6 +125,9 @@ class Browser():
             except DatabaseError:
                     print 'Database exception trying to check for rotowire entry for ' + player.displayname + ' for team ' + team +' on date ' + str(parsedDate) #+ 'with text:' + text1
                     transaction.rollback()
+            except UnicodeDecodeError:
+                    print 'Exception trying decode news ' + player.displayname + ' for team ' + team +' on date ' + str(parsedDate) #+ 'with text:' + text1
+                    transaction.rollback()
         except ObjectDoesNotExist :
             try:
                 self.addMissingRotowirePlayerEntry(name, team, parsedDate, text1, text2)
@@ -135,9 +146,9 @@ class Browser():
         return True
         
     def decodePage(self, html):
-            namematch=r'player.htm\?ID=[\d]*\"\>([\w\s\'\.-]*)'
+            namematch=r'player.htm\?id=[\d]*\"\>([\w\s\'\.-]*)'
             datematch=r'news-item-date\"\>(\d*/\d*/\d*)'
-            newsmatch=r'news-item-news\"\s*\>(.*)\<'
+            newsmatch=r'news-item-news\"\s*\>(.*)\</div'
             analysismatch=r'\<p\>Fantasy\sAnalysis'
             analysistext=r'[\s]*(.*)'
 

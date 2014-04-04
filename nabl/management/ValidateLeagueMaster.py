@@ -7,6 +7,7 @@ import xlrd
 from nabladmin.models import Teams
 from nabladmin.models import Players
 from nabladmin.models import Rosterassign
+from nabladmin.models import CardedPlayers
 from django.core.exceptions import ObjectDoesNotExist
 import re
 
@@ -24,6 +25,9 @@ class LeagueMaster():
     
     def getRosterAssignment(self, player, season):
         return Rosterassign.objects.get(playerid=player.id, year=season)
+    
+    def getCardedPlayer(self, name, cardedyear):
+        return CardedPlayers.objects.get(playername=name, season=cardedyear)
      
     def loadMasterFile(self, filename):
         self.wb = xlrd.open_workbook(filename)
@@ -64,11 +68,12 @@ class LeagueMaster():
         count = 0
         sh = self.wb.sheet_by_name(u'Rosters and available players')
         
-        for rownum in range(3, sh.nrows):
+        for rownum in range(3, 1200):
             row = sh.row_values(rownum)
         
             lastname = row[2].strip()
             firstname = row[3].strip()
+            mlbteam = row[4].strip()
             team = row[5].strip()
             
             
@@ -94,9 +99,24 @@ class LeagueMaster():
                         assignment = self.getRosterAssignment(player, rosterYear)
                         print firstname + ' ' + lastname + ' not assigned in file is assigned on site to ' + assignment.teamid.city
                     except ObjectDoesNotExist:
-                        continue
+                        pass
+                    
+                if mlbteam != 'unc':
+                    try:
+                        self.getCardedPlayer(player.firstname + ' ' + player.lastname, rosterYear-1)
+                    except ObjectDoesNotExist:
+                        print 'cannot card for  player: #' + firstname + "# #" + lastname +'#'
+                else:
+                    try:
+                        self.getCardedPlayer(player.firstname + ' ' + player.lastname, rosterYear-1)
+                        print 'showing card for unc  player: #' + firstname + "# #" + lastname +'#'
+                    except ObjectDoesNotExist:
+                        pass
+                        
             else:
                 print 'cannot find player: #' + firstname + "# #" + lastname +'#'
+                
+            
                 
             
                 
@@ -105,7 +125,7 @@ class LeagueMaster():
     
 if __name__ == '__main__':
     master = LeagueMaster()
-    master.loadMasterFile(u'/Users/carlphil/Projects/NABL/nabl/NABL2013_Master.xlsx')
+    master.loadMasterFile(u'/Users/carlphil/Projects/NABL/nabl/NABL2014_Master.xlsx')
     teams = master.getTeamList()
-    master.validatePlayersInFile(teams, 2013, 2011)
+    master.validatePlayersInFile(teams, 2014, 2011)
     

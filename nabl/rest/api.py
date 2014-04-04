@@ -13,7 +13,7 @@ class MembersResource(ModelResource):
         
 class RotowiremissingResource(ModelResource):
     class Meta:
-        queryset = Rotowiremissing.objects.all().order_by('playername')
+        queryset = Rotowiremissing.objects.all().distinct('playername').order_by('playername')
         resource_name = 'RotowireMissing'
         fields = ['playername']
         

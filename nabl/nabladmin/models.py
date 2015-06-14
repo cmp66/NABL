@@ -292,7 +292,7 @@ MONTHIDX_CHOICES = (
 
 
 class Schedules(models.Model):
-    year = models.IntegerField(default='2010')
+    year = models.IntegerField()
     hometeam = models.ForeignKey(Teams, related_name='hometeam', db_column='hometeam')
     visitteam = models.ForeignKey(Teams, related_name='visitteam', db_column='visitteam')
     seriesid = models.AutoField(primary_key=True)

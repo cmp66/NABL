@@ -13,7 +13,7 @@ DATABASES = {
         'NAME': 'NABL',            # Or path to database file if using sqlite3.
         'USER': 'sbaapba',             # Not used with sqlite3.
         'PASSWORD': 'apba',         # Not used with sqlite3.
-        'HOST': '192.168.1.7',             # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': '192.168.1.4',             # Set to empty string for localhost. Not used with sqlite3.
         'PORT': ''             # Set to empty string for default. Not used with sqlite3.
     }
 }

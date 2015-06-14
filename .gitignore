@@ -8,6 +8,9 @@
 */data/*
 pom.xml.versionsBackup
 
+# Idea project files
+.idea/*
+*.iml
 
 # Mac OS X Finder metadata files
 *.DS_Store

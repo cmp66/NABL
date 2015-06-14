@@ -8,7 +8,7 @@ from nabladmin.models import Teams
 from nabladmin.models import Players
 from nabladmin.models import Rosterassign
 from nabladmin.models import CardedPlayers
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 import re
 
 
@@ -68,7 +68,7 @@ class LeagueMaster():
         count = 0
         sh = self.wb.sheet_by_name(u'Rosters and available players')
         
-        for rownum in range(3, 1200):
+        for rownum in range(3, 1001):
             row = sh.row_values(rownum)
         
             lastname = row[2].strip()
@@ -93,6 +93,8 @@ class LeagueMaster():
                             print firstname + " " + lastname + ' assigned to ' + team + ' in file but on site is ' + assignment.teamid.city
                     except ObjectDoesNotExist:
                             print firstname + ' ' + lastname + ' assigned to ' +  team + ' in file is not assigned on site'
+                    except MultipleObjectsReturned:
+                            print firstname + ' ' + lastname + ' assigned to multiple teams on site'
                 #make sure the site also does not have this player assigned
                 else:
                     try:
@@ -125,7 +127,7 @@ class LeagueMaster():
     
 if __name__ == '__main__':
     master = LeagueMaster()
-    master.loadMasterFile(u'/Users/carlphil/Projects/NABL/nabl/NABL2014_Master.xlsx')
+    master.loadMasterFile(u'/Users/carlphil/Projects/NABL/nabl/NABL2015_Master.xlsx')
     teams = master.getTeamList()
-    master.validatePlayersInFile(teams, 2014, 2011)
+    master.validatePlayersInFile(teams, 2015, 2011)
     

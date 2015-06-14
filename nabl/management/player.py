@@ -50,7 +50,7 @@ class PlayerManager():
             if relativelink.find("players") == -1:
                 relativelink = "/players" + relativelink
             
-            print 'looking up:' + player.firstname + ' ' + player.lastname + 'with link:' + relativelink
+            #print 'looking up:' + player.firstname + ' ' + player.lastname + 'with link:' + relativelink
             bbPlayerData = search.getPlayerData(relativelink)
             
             player.firstname = bbPlayerData['firstname'].decode("utf-8")
@@ -165,7 +165,7 @@ class DraftPickUpdater():
 #updater.importNewPlayersForYear("/Users/cphillips/views/git/NABL/nabl/CardedList2011.csv", 2011)
 #updater.findMissingCardedPlayers()
 #updater.migrateDraftPicks(2012, 2013)
-
+#updater.migratePlayers(2014, 2015)
 updater = DraftPickUpdater()
-updater.migrateDraftPicks(2013, 2014)
+updater.migrateDraftPicks(2015, 2016)
 

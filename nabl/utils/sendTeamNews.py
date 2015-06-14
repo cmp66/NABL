@@ -16,7 +16,7 @@ from email.mime.text import MIMEText
 
     
 def getPlayersForTeam(team):    
-    assignsList = Rosterassign.objects.filter(teamid_id=team.id, year=2013).values_list("playerid")
+    assignsList = Rosterassign.objects.filter(teamid_id=team.id, year=2015).values_list("playerid")
     playerList = Players.objects.filter(id__in=assignsList).values_list("id")
 
     return playerList
@@ -47,18 +47,22 @@ def sendEmailNews(playerList,emailAddresses, subject):
     
     msg = MIMEText(body)
     msg['Subject'] =  subject + str(yesterday)
-    msg['From'] = 'cphillips@wahoosfotware.com'
+    msg['From'] = 'cmp1166@gmail.com'
     msg['To'] = targetAddress
     
-    server = smtplib.SMTP('mail.wahoosoftware.com', 5125)
-    server.login('cphillips@wahoosoftware.com', 'buckeye') 
-    server.sendmail('cphillips@wahoosoftware.com', [targetAddress], msg.as_string())
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    server.login('cmp1166@gmail.com', 'rulg qtrl gjta kfdm') 
+    server.sendmail('cmp1166@gmail.com', [targetAddress], msg.as_string())
     server.quit()
     
-assignsList = Rosterassign.objects.filter(year=2013).values_list("playerid")
-unownedplayers = Players.objects.filter(endyear=2013).exclude(id__in=assignsList)
+assignsList = Rosterassign.objects.filter(year=2015).values_list("playerid")
+unownedplayers = Players.objects.filter(endyear=2015).exclude(id__in=assignsList)
     
-for teamresult in Teamresults.objects.filter(year=2013):
+for teamresult in Teamresults.objects.filter(year=2015):
+    if teamresult.teamid.nickname == "Growlers":
+        continue
     emailAddresses = Emailaddresses.objects.filter(memberid=teamresult.teamid.memberid)
     playerList = getPlayersForTeam(teamresult.teamid)
     sendEmailNews(playerList, emailAddresses, teamresult.teamid.nickname + ' Player News for ')

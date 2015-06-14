@@ -1,6 +1,9 @@
 import httplib
 import re
 
+from nabladmin.models import Players
+from nabladmin.models import Rosterassign
+
 class SiteSearch():
 
         def getPosition(self, htmlResponse):
@@ -38,12 +41,22 @@ class SiteSearch():
                 players.append(playerData)
                 
             return players
-                 
+              
+        def getPlayerStats(self, year, htmlResponse):
+            for stats in re.finditer(r'pitching_standard.2014\">[\s\w\n]*(<td.*</td>[\s\w\n]*)*.*', htmlResponse):
+                print 'Year' + stats.group(1)
+                print 'Year' + stats.group(2)
+                print 'Year' + stats.group(3)
+                print 'Year' + stats.group(4)
+                print 'Year' + stats.group(5)
+                print 'Year' + stats.group(6)
+                print 'Year' + stats.group(7)
+            
                 
         def getPlayerDataFromPage(self, htmlResponse):      
             #print htmlResponse
             #pattern = re.compile('<h1 class="float_left">(\w*)\s([\w\s]*)</h1>', re.UNICODE)
-            name = re.search(r'<span itemprop="name" class="bold_text xx_large_text">(.*?)\s(.*?)</span>', htmlResponse)
+            name = re.search(r'<span id="player_name" itemprop="name" class="bold_text xx_large_text">(.*?)\s(.*?)</span>', htmlResponse)
             #name = re.search(r'<h1 class="float_left">(.*?)\s(.*?)</h1>', htmlResponse)
             firstname = name.group(1)
             lastname = name.group(2)
@@ -91,9 +104,19 @@ class SiteSearch():
             #print relativeUrl
             playerData = self.getPlayerDataFromPage(response)
             playerData['url'] = relativeUrl
+            
+            #print 'getting data for ' + relativeUrl
+            #if playerData['position'] == 'Pitcher':
+                #print 'Pitcher'
+                #playerData['stats'] = self.getPlayerStats('2014', response)
             return playerData
-            
-            
+         
+#search = SiteSearch()  
+#assignsList = Rosterassign.objects.filter(year=2014).values_list("playerid") 
+#unownedplayers = Players.objects.filter(endyear=2013).exclude(id__in=assignsList) 
+#for player in unownedplayers:
+#    relativeUrl = re.search(r'http://www.baseball-reference.com(/players/\w/\w*.shtml)', player.bbreflink) 
+#    search.getPlayerData(relativeUrl.group(1))       
             
             
             

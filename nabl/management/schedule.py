@@ -27,7 +27,7 @@ class ScheduleUpdater():
             newRecord.save()
             
 #updater = ScheduleUpdater()
-#updater.copySchedule(2012, 2013)
+#updater.copySchedule(2014, 2015)
         
     
     

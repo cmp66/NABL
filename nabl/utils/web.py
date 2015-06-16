@@ -8,9 +8,9 @@ import cookielib
 import re
 import urllib
 from time import sleep
-from nabladmin.models import Players
-from nabladmin.models import Rotowire
-from nabladmin.models import Rotowiremissing
+from nabl.nabladmin.models import Players
+from nabl.nabladmin.models import Rotowire
+from nabl.nabladmin.models import Rotowiremissing
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import MultipleObjectsReturned
 from django.db.utils import DatabaseError

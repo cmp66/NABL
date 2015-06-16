@@ -1,4 +1,4 @@
-from nabladmin.models import *
+from nabl.nabladmin.models import *
 from django.contrib import admin
 
 admin.site.register(Members, MembersAdmin)

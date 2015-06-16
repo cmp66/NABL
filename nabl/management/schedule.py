@@ -4,7 +4,7 @@ Created on Apr 22, 2012
 @author: cphillips
 '''
 
-from nabladmin.models import Schedules
+from nabl.nabladmin.models import Schedules
 
 
 class ScheduleUpdater():

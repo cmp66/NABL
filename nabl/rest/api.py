@@ -1,7 +1,7 @@
 #from tastypie.resources import ModelResource
-from nabladmin.models import Members
-from nabladmin.models import Rotowiremissing 
-from nabladmin.models import Players
+from nabl.nabladmin.models import Members
+from nabl.nabladmin.models import Rotowiremissing 
+from nabl.nabladmin.models import Players
 from tastypie.authorization import Authorization
 #from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 from tastypie.resources import ModelResource, ALL

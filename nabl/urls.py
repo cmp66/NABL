@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, include, url
 #from django_restapi.model_resource import Collection
 #from django_restapi.responder import *
 #from django_restapi.receiver import *
@@ -7,9 +7,8 @@ from rest.api import RotowiremissingResource
 from rest.api import PlayersResource
 from nabladmin import adminresources
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from site import views
+from nabl.site import views
 from tastypie.api import Api
-
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -45,7 +44,9 @@ urlpatterns = patterns('',
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^admin/', admin.site.urls),
+    url(r'^admin/', include(admin.site.urls)),
+    #url(r'^nabl/admin/', include(admin.site.urls)),
+    #(r'^admin/', admin.site.urls),
 #    (r'^nabladmin/admin/', admin.site.urls),
     (r'^api/', include(v1_api.urls)),
     #(r'^api/', include(rotowiremissing_resource.urls)),    

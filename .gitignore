@@ -12,6 +12,9 @@ pom.xml.versionsBackup
 .idea/*
 *.iml
 
+#python virtualenv
+venv/*
+
 # Mac OS X Finder metadata files
 *.DS_Store
 

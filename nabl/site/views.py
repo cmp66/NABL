@@ -4,10 +4,10 @@ Created on Feb 10, 2012
 @author: cphillips
 '''
 from django.shortcuts import render_to_response
-from nabladmin.models import Rotowiremissing
+from nabl.nabladmin.models import Rotowiremissing
 from django.http import HttpResponse
 from django.utils import simplejson
-from management.bbref import SiteSearch
+from nabl.management.bbref import SiteSearch
 import re
 
 def admin(request):  

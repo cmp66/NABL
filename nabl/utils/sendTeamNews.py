@@ -3,11 +3,11 @@ Created on Apr 16, 2013
 
 @author: carlphil
 '''
-from nabladmin.models import Rosterassign
-from nabladmin.models import Rotowire
-from nabladmin.models import Players
-from nabladmin.models import Emailaddresses
-from nabladmin.models import Teamresults
+from nabl.nabladmin.models import Rosterassign
+from nabl.nabladmin.models import Rotowire
+from nabl.nabladmin.models import Players
+from nabl.nabladmin.models import Emailaddresses
+from nabl.nabladmin.models import Teamresults
 from datetime import datetime, timedelta
 import textwrap
 import smtplib
@@ -58,7 +58,7 @@ def sendEmailNews(playerList,emailAddresses, subject):
     server.quit()
     
 assignsList = Rosterassign.objects.filter(year=2015).values_list("playerid")
-unownedplayers = Players.objects.filter(endyear=2015).exclude(id__in=assignsList)
+unownedplayers = Players.objects.filter(endyear=2014).exclude(id__in=assignsList)
     
 for teamresult in Teamresults.objects.filter(year=2015):
     if teamresult.teamid.nickname == "Growlers":
@@ -66,7 +66,6 @@ for teamresult in Teamresults.objects.filter(year=2015):
     emailAddresses = Emailaddresses.objects.filter(memberid=teamresult.teamid.memberid)
     playerList = getPlayersForTeam(teamresult.teamid)
     sendEmailNews(playerList, emailAddresses, teamresult.teamid.nickname + ' Player News for ')
-    
     
     sendEmailNews(unownedplayers, emailAddresses, 'Unowned Player News for ')
 

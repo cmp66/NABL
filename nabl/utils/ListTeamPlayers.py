@@ -3,9 +3,9 @@ Created on May 11, 2013
 
 @author: carlphil
 '''
-from nabladmin.models import CardedPlayers
-from nabladmin.models import Rosterassign
-from nabladmin.models import Teams
+from nabl.nabladmin.models import CardedPlayers
+from nabl.nabladmin.models import Rosterassign
+from nabl.nabladmin.models import Teams
 
 team = Teams.objects.get(nickname='Stars')
 assignedPlayers = Rosterassign.objects.filter(year=2013).filter(teamid=team).values_list("playerid")

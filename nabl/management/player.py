@@ -1,8 +1,8 @@
-from nabladmin.models import Players
-from nabladmin.models import CardedPlayers
-from nabladmin.models import Rosterassign
-from nabladmin.models import Draftpicks
-from management.bbref import SiteSearch
+from nabl.nabladmin.models import Players
+from nabl.nabladmin.models import CardedPlayers
+from nabl.nabladmin.models import Rosterassign
+from nabl.nabladmin.models import Draftpicks
+from nabl.management.bbref import SiteSearch
 import re
 
 

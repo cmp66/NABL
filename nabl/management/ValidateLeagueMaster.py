@@ -4,10 +4,10 @@ Created on Mar 24, 2013
 @author: carlphil
 '''
 import xlrd
-from nabladmin.models import Teams
-from nabladmin.models import Players
-from nabladmin.models import Rosterassign
-from nabladmin.models import CardedPlayers
+from nabl.nabladmin.models import Teams
+from nabl.nabladmin.models import Players
+from nabl.nabladmin.models import Rosterassign
+from nabl.nabladmin.models import CardedPlayers
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 import re
 

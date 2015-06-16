@@ -1,8 +1,8 @@
 import httplib
 import re
 
-from nabladmin.models import Players
-from nabladmin.models import Rosterassign
+from nabl.nabladmin.models import Players
+from nabl.nabladmin.models import Rosterassign
 
 class SiteSearch():
 

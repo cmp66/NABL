@@ -3,8 +3,8 @@ Created on Apr 28, 2013
 
 @author: carlphil
 '''
-from bbref import SiteSearch
-from nabladmin.models import Rotowiremissing
+from nabl.bbref import SiteSearch
+from nabl.nabladmin.models import Rotowiremissing
 
 playerSearch = SiteSearch()
 missingPlayers = Rotowiremissing.objects.values('playername').distinct()

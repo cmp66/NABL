@@ -3,8 +3,8 @@ Created on Mar 24, 2013
 
 @author: carlphil
 '''
-from nabladmin.models import Players
-from nabladmin.models import Rotowiremissing
+from nabl.nabladmin.models import Players
+from nabl.nabladmin.models import Rotowiremissing
 import bbref
 from django.core.exceptions import ObjectDoesNotExist
 import re

@@ -166,6 +166,6 @@ class DraftPickUpdater():
 #updater.findMissingCardedPlayers()
 #updater.migrateDraftPicks(2012, 2013)
 #updater.migratePlayers(2014, 2015)
-updater = DraftPickUpdater()
-updater.migrateDraftPicks(2015, 2016)
+#updater = DraftPickUpdater()
+#updater.migrateDraftPicks(2015, 2016)
 

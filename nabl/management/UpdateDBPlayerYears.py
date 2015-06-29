@@ -7,5 +7,5 @@ from player import PlayerManager
 
 updater = PlayerManager()
 playerList = updater.findPlayersWithBBrefLinks();
-updater.updatePlayerList(playerList, 2012, 1990)
+updater.updatePlayerList(playerList, 2013, 1990)
 

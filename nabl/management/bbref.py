@@ -88,7 +88,7 @@ class SiteSearch():
 
         if response.status == 302:
             relativeURL = response.getheader('Location')
-            if 'minors' not in relativeURL:
+            if 'minors' not in relativeURL and 'japan' not in relativeURL:
                 playerData = self.getPlayerData(response.getheader('Location'))
                 players.append(playerData)
         else:

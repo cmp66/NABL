@@ -17,7 +17,7 @@ class SiteSearch():
     def findPossibleMatches(self, httpResponseData):
 
         players = []
-        for m in re.finditer(r'<a href="(/players/\w/\w*.shtml)">',
+        for m in re.finditer(r'<a.*href="(/players/\w/\w*.shtml)">',
                              httpResponseData):
             url = m.group(1)
             # displayName = re.sub(r'&nbsp;', " ", m.group(2))

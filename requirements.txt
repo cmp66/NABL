@@ -1,4 +1,4 @@
-Django==1.5.1
+Django==1.4.21
 django-tastypie==0.9.14
 mechanize==0.2.5
 mimeparse==0.1.3

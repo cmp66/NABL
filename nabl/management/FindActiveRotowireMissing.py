@@ -8,6 +8,7 @@ queryset = Rotowiremissing.objects.all().distinct('playername').order_by('player
 search = SiteSearch()
 
 for missing_player in queryset:
+    print 'looking for : ' + missing_player.playername
     possibleHits = search.playerSearch(missing_player.playername)
 
     if len(possibleHits) > 0:

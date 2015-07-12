@@ -7,7 +7,6 @@ from nabl.management.bbref import SiteSearch
 queryset = Rotowiremissing.objects.all().distinct('playername').order_by('playername')
 search = SiteSearch()
 
-
 for missing_player in queryset:
     possibleHits = search.playerSearch(missing_player.playername)
 

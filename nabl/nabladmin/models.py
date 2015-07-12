@@ -212,6 +212,7 @@ class Rotowiremissing(models.Model):
     reportdate = models.DateTimeField()
     news = models.TextField(max_length=2048)
     comment = models.TextField(max_length=2048)
+    active_mlb = models.IntegerField()
     
     class Meta:
         db_table = u'rotowiremissing'

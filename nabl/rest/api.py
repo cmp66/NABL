@@ -13,9 +13,13 @@ class MembersResource(ModelResource):
         
 class RotowiremissingResource(ModelResource):
     class Meta:
-        queryset = Rotowiremissing.objects.all().distinct('playername').order_by('playername')
+        #queryset = Rotowiremissing.objects.all().distinct('playername').order_by('playername')
+        queryset = Rotowiremissing.objects.filter(active_mlb__exact=1).distinct('playername').order_by('playername')
         resource_name = 'RotowireMissing'
         fields = ['playername']
+	filtering = {
+	    'active_mlb': ALL,
+ 	}
         
 class PlayersResource(ModelResource):
     class Meta:

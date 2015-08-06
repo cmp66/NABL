@@ -191,7 +191,7 @@ class Browser():
                         text2 = found.group(1)
                         #text2 = text2.decode("utf-8")
                         print name + "#" + date +"#" + text1 + "#" + text2
-                        foundDuplicate = self.addRotowirePlayerEntry(name, team, date, text1, text2, 2011)
+                        foundDuplicate = self.addRotowirePlayerEntry(name, team, date, text1, text2, 2015)
                         if foundDuplicate == False:
                             return False
                     mode = 'date'

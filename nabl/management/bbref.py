@@ -55,7 +55,11 @@ class SiteSearch():
     def getPlayerDataFromPage(self, htmlResponse):
         # print htmlResponse
         # pattern = re.compile('<h1 class="float_left">(\w*)\s([\w\s]*)</h1>', re.UNICODE)
-        name = re.search(r'<span id="player_name" itemprop="name" class="bold_text xx_large_text">(.*?)\s(.*?)</span>',
+        name = re.search(r'<span id=player_name itemprop="name" class="bold_text xx_large_text">(.*?)\s(.*?)</span>',
+                         htmlResponse)
+
+        if name is None:
+            name = re.search(r'<span id="player_name" itemprop="name" class="bold_text xx_large_text">(.*?)\s(.*?)</span>',
                          htmlResponse)
         # name = re.search(r'<h1 class="float_left">(.*?)\s(.*?)</h1>', htmlResponse)
         firstname = name.group(1)
@@ -93,7 +97,7 @@ class SiteSearch():
                 response = conn.getresponse()
                 responseData = response.read()
                 players = self.findPossibleMatches(responseData)
-            elif 'minors' not in relativeURL and 'japan' not in relativeURL:
+            elif 'minors' not in relativeURL and 'japan' not in relativeURL and 'register' not in relativeURL:
                 playerData = self.getPlayerData(response.getheader('Location'))
                 players.append(playerData)
         else:

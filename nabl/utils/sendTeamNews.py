@@ -61,8 +61,6 @@ assignsList = Rosterassign.objects.filter(year=2015).values_list("playerid")
 unownedplayers = Players.objects.filter(endyear=2015).exclude(id__in=assignsList)
     
 for teamresult in Teamresults.objects.filter(year=2015):
-    if teamresult.teamid.nickname == "Growlers":
-        continue
     emailAddresses = Emailaddresses.objects.filter(memberid=teamresult.teamid.memberid)
     playerList = getPlayersForTeam(teamresult.teamid)
     sendEmailNews(playerList, emailAddresses, teamresult.teamid.nickname + ' Player News for ')

@@ -103,7 +103,7 @@ class LeagueMaster():
                     try:
                         self.getCardedPlayer(player.firstname + ' ' + player.lastname, rosterYear - 1)
                     except ObjectDoesNotExist:
-                        print 'cannot card for  player: #' + firstname + "# #" + lastname + '#'
+                        print 'cannot find card for  player: #' + firstname + "# #" + lastname + '#'
                 else:
                     try:
                         self.getCardedPlayer(player.firstname + ' ' + player.lastname, rosterYear - 1)

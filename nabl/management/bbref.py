@@ -7,12 +7,14 @@ from nabl.nabladmin.models import Rosterassign
 
 class SiteSearch():
     def getPosition(self, htmlResponse):
-        positionMatch = re.search(r'<strong>Positio.*itemprop="role">(.*)</span>', htmlResponse)
+        positionMatch = re.search(r'<strong>Positio.*<\/strong>\n(.*)\n', htmlResponse)
+        #positionMatch = re.search(r'<strong>Positio.*itemprop="role">(.*)</span>', htmlResponse)
 
         if positionMatch:
             position = positionMatch.group(1)
-            position = re.sub(r':\s', "", position)
-            return position
+            position = re.sub(r'\n', "", position)
+            position = re.sub(r'\r', "", position)
+            return position.strip()
 
     def findPossibleMatches(self, httpResponseData):
 
@@ -55,7 +57,9 @@ class SiteSearch():
     def getPlayerDataFromPage(self, htmlResponse):
         # print htmlResponse
         # pattern = re.compile('<h1 class="float_left">(\w*)\s([\w\s]*)</h1>', re.UNICODE)
-        name = re.search(r'<span id=player_name itemprop="name" class="bold_text xx_large_text">(.*?)\s(.*?)</span>',
+        #name = re.search(r'<span id=player_name itemprop="name" class="bold_text xx_large_text">(.*?)\s(.*?)</span>',
+        #                 htmlResponse)
+        name = re.search(r'<h1 itemprop="name">(.*?)\s(.*?)</h1>',
                          htmlResponse)
 
         if name is None:
@@ -66,18 +70,24 @@ class SiteSearch():
         lastname = name.group(2)
 
         position = self.getPosition(htmlResponse)
-
         # yearsMatch = re.search(r'(\d{4})-(\d{4})', htmlResponse)
-        yearsMatch = re.search(r'<br><strong>Tea\w*?</strong>.*?(\d{4})', htmlResponse)
+        #yearsMatch = re.search(r'<br><strong>Tea\w*?</strong>.*?(\d{4})', htmlResponse)
+        yearsMatch = re.search(r'Debut:.*\n.*<a.*>\w+\s\d+,\s(\d+)', htmlResponse)
         firstYear = yearsMatch.group(1)
 
-        yearsMatch = re.search(r'<br><strong>Tea\w*?</strong>.*?(\d{4})-(\d{4})', htmlResponse)
+        #yearsMatch = re.search(r'<br><strong>Tea\w*?</strong>.*?(\d{4})-(\d{4})', htmlResponse)
+        yearsMatch = re.search(r'Last Game:.*\n.*<a.*>\w+\s\d+,\s(\d+)', htmlResponse)
         if yearsMatch:
-            lastYear = yearsMatch.group(2)
+            lastYear = yearsMatch.group(1)
         else:
             lastYear = firstYear
+            for m in re.finditer(r't=f&amp;year=(\d+)', htmlResponse):
+                recordYear = m.group(1)
+                if recordYear > lastYear:
+                    lastYear = recordYear
+            
 
-        # print 'Position:' + position + '    firstyear:' + firstYear + '    lastyear:' + lastYear + '   firstname: ' + firstname + '    lastname: ' + lastname
+        print 'Position:' + position + '    firstyear:' + firstYear + '    lastyear:' + lastYear + '   firstname: ' + firstname + '    lastname: ' + lastname
 
         return {'firstname': firstname, 'lastname': lastname, 'position': position, 'firstyear': firstYear,
                 'lastyear': lastYear}

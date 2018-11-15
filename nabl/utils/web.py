@@ -81,6 +81,7 @@ class Browser():
                 rotoEntry.reportdate = date
                 rotoEntry.news = text1
                 rotoEntry.comment = text2
+                rotoEntry.active_mlb = 0;
                 rotoEntry.save()
  
     @transaction.commit_manually       
@@ -132,8 +133,8 @@ class Browser():
             try:
                 self.addMissingRotowirePlayerEntry(name, team, parsedDate, text1, text2)
                 transaction.commit()
-            except DatabaseError:
-                print 'Exception adding missing entry for ' + name + ' for team ' + team +' on date ' + str(date)
+            except DatabaseError, err:
+                print 'Exception adding missing entry for ' + name + ' for team ' + team +' on date ' + str(date) + '--------' + str(err)
                 transaction.rollback()
         except MultipleObjectsReturned :
             try:
@@ -205,7 +206,8 @@ class Browser():
         
         
 browser = Browser()
-readHTML = browser.browseURL("http://www.rotowire.com/baseball/latestnews.htm")
+#readHTML = browser.browseURL("http://www.rotowire.com/baseball/latestnews.htm")
+readHTML = browser.browseURL("https://www.rotowire.com/baseball/news.php")
 continueReading = browser.decodePage(readHTML)
 
 

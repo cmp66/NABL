@@ -256,8 +256,8 @@ class AssignmentsAdmin(admin.ModelAdmin):
 class Draftpicks(models.Model):
     pickid = models.AutoField(primary_key=True)
     draftyear = models.IntegerField()
-    slotteam = models.ForeignKey(Teams, db_column='slotteam')
-    ownerteam = models.IntegerField()
+    slotteam = models.ForeignKey(Teams, db_column='slotteam', related_name='slotteams')
+    ownerteam = models.ForeignKey(Teams, db_column='ownerteam', related_name='ownerteams')
     playerid = models.IntegerField()
     #playerid = models.ForeignKey(Players, db_column='playerid')
     round = models.IntegerField()
@@ -270,7 +270,7 @@ class Draftpicks(models.Model):
 class DraftpicksAdmin(admin.ModelAdmin):
     fields = ['draftyear', 'slotteam', 'ownerteam', 'playerid', 'round']
     list_display = ('draftyear', 'slotteam', 'ownerteam', 'playerid', 'draftyear', 'round')
-    search_fields = ['slotteam__name', 'playerid__displayname', 'ownerteam', 'round']
+    search_fields = ['slotteam__city', 'ownerteam__city', 'round']
     list_filter = ('draftyear',)
 
 MONTH_CHOICES = (

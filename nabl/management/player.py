@@ -59,7 +59,7 @@ class PlayerManager():
             player.endyear = bbPlayerData['lastyear']
             player.bbreflink = "http://www.baseball-reference.com" + relativelink
             
-            if bbPlayerData['position'].find("Pitcher") >= 0:
+            if bbPlayerData['position'] and bbPlayerData['position'].find("Pitcher") >= 0:
                 player.position = 'P'
                 
             print ' Updating Player: ' + player.firstname + " " + player.lastname
@@ -73,7 +73,7 @@ class PlayerManager():
         """
         playerFile = open(fileName, 'r')
         for line in playerFile:
-            namesearch = re.search(r'(\w*),(.*)$', line)
+            namesearch = re.search(r'(.*),(.*)$', line)
             mlbteam = namesearch.group(1)
             playername = namesearch.group(2)
             
@@ -86,7 +86,7 @@ class PlayerManager():
             cardedplayer.season = year
             cardedplayer.mlbteam = mlbteam
             
-            print 'saving player #' + playername + '#'
+            print 'saving team: ' + mlbteam + ' player #' + playername + '#'
             cardedplayer.save()
  
  
@@ -105,7 +105,7 @@ class PlayerManager():
             newAssignment.save()
             
             
-    def findMissingCardedPlayers(self, season):
+    def findMissingCardedPlayers(self, season, cardedseason):
         """
         Iterates throught the entire list of carded player for a given season and validates against
         players in the main database.  It first checks by search by first/lastname in the database.  If 
@@ -123,6 +123,8 @@ class PlayerManager():
             if len(players) == 1:
                 cardedplayer.player = players[0]
                 cardedplayer.save()
+                #players[0].endyear = cardedseason
+                #players[0].save() 
             if len(players) > 1:
                 print 'firstname #' + firstname +'# lastname #' + lastname + '#' + ' has multiple entries'
             if len(players) == 0:
@@ -138,6 +140,8 @@ class PlayerManager():
                     cardedplayer.playername = newcardedname 
                     cardedplayer.player = otherplayer
                     cardedplayer.save() 
+                    #otherplayer.endyear = cardedseason
+                    #otherplayer.save()
                     
 class DraftPickUpdater():
     
@@ -152,7 +156,7 @@ class DraftPickUpdater():
             newPick = Draftpicks()
             newPick.draftyear = targetYear
             newPick.playerid = 0
-            newPick.ownerteam = sourcePick.slotteam.id
+            newPick.ownerteam = sourcePick.slotteam
             newPick.slotteam = sourcePick.slotteam
             newPick.round = sourcePick.round
             newPick.save()
@@ -164,8 +168,7 @@ class DraftPickUpdater():
 #updater.updatePlayerList(playerList, 2006, 1990)
 #updater.importNewPlayersForYear("/Users/cphillips/views/git/NABL/nabl/CardedList2011.csv", 2011)
 #updater.findMissingCardedPlayers()
-#updater.migrateDraftPicks(2012, 2013)
 #updater.migratePlayers(2014, 2015)
-#updater = DraftPickUpdater()
-#updater.migrateDraftPicks(2015, 2016)
+updater = DraftPickUpdater()
+updater.migrateDraftPicks(2018, 2019)
 

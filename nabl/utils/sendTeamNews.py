@@ -16,7 +16,7 @@ from email.mime.text import MIMEText
 
     
 def getPlayersForTeam(team):    
-    assignsList = Rosterassign.objects.filter(teamid_id=team.id, year=2015).values_list("playerid")
+    assignsList = Rosterassign.objects.filter(teamid_id=team.id, year=2018).values_list("playerid")
     playerList = Players.objects.filter(id__in=assignsList).values_list("id")
 
     return playerList
@@ -57,10 +57,10 @@ def sendEmailNews(playerList,emailAddresses, subject):
     server.sendmail('cmp1166@gmail.com', [targetAddress], msg.as_string())
     server.quit()
     
-assignsList = Rosterassign.objects.filter(year=2015).values_list("playerid")
-unownedplayers = Players.objects.filter(endyear=2015).exclude(id__in=assignsList)
+assignsList = Rosterassign.objects.filter(year=2018).values_list("playerid")
+unownedplayers = Players.objects.filter(endyear=2017).exclude(id__in=assignsList)
     
-for teamresult in Teamresults.objects.filter(year=2015):
+for teamresult in Teamresults.objects.filter(year=2018):
     emailAddresses = Emailaddresses.objects.filter(memberid=teamresult.teamid.memberid)
     playerList = getPlayersForTeam(teamresult.teamid)
     sendEmailNews(playerList, emailAddresses, teamresult.teamid.nickname + ' Player News for ')

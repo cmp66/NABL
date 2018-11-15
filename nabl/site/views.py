@@ -4,7 +4,7 @@ Created on Feb 10, 2012
 @author: cphillips
 '''
 from django.shortcuts import render_to_response
-from nabl.nabladmin.models import Rotowiremissing
+from nabl.nabladmin.models import Rotowiremissing, CardedPlayers
 from django.http import HttpResponse
 from django.utils import simplejson
 from nabl.management.bbref import SiteSearch
@@ -13,7 +13,8 @@ import re
 def admin(request):  
     adminMode = request.GET.get('mode', 'missing-link')
     
-    missingPlayers = Rotowiremissing.objects.values('playername').distinct('playername')
+    #missingPlayers = Rotowiremissing.objects.values('playername').distinct('playername')
+    missingPlayers = CardedPlayers.objects.filter(player__isnull=True, season__exact=2016).values('playername')
     for player in missingPlayers:
         id = re.sub(r' ', "_", player['playername'])
         player['id'] = id

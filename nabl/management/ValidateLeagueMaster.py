@@ -37,7 +37,7 @@ class LeagueMaster():
 
         for rownum in range(3, sh.nrows):
             row = sh.row_values(rownum)
-            teamname = row[5]
+            teamname = row[4]
 
             if teamname and not u'zz' in teamname:
                 nablTeam = self.getTeamByCity(teamname)
@@ -68,10 +68,10 @@ class LeagueMaster():
         for rownum in range(3, 1001):
             row = sh.row_values(rownum)
 
-            lastname = row[2].strip()
-            firstname = row[3].strip()
-            mlbteam = row[4].strip()
-            team = row[5].strip()
+            lastname = row[1].strip()
+            firstname = row[2].strip()
+            mlbteam = row[3].strip()
+            team = row[4].strip()
 
             if firstname == '' or lastname == '':
                 continue
@@ -119,7 +119,7 @@ class LeagueMaster():
 
 if __name__ == '__main__':
     master = LeagueMaster()
-    projectRoot = os.environ["PROJECT_ROOT"]
-    master.loadMasterFile(projectRoot + u'/nabl/files/NABL2015_Master.xlsx')
+    #projectRoot = os.environ["PROJECT_ROOT"]
+    master.loadMasterFile(u'/home/ec2-user/projects/nabl/nabl/files/NABL_2018_Master_050118.xlsx')
     teams = master.getTeamList()
-    master.validatePlayersInFile(teams, 2015, 2011)
+    master.validatePlayersInFile(teams, 2018, 2015)

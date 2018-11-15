@@ -1,6 +1,6 @@
 #from tastypie.resources import ModelResource
 from nabl.nabladmin.models import Members
-from nabl.nabladmin.models import Rotowiremissing 
+from nabl.nabladmin.models import Rotowiremissing,CardedPlayers
 from nabl.nabladmin.models import Players
 from tastypie.authorization import Authorization
 #from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
@@ -13,14 +13,15 @@ class MembersResource(ModelResource):
         
 class RotowiremissingResource(ModelResource):
     class Meta:
-        #queryset = Rotowiremissing.objects.all().distinct('playername').order_by('playername')
-        queryset = Rotowiremissing.objects.filter(active_mlb__exact=1).distinct('playername').order_by('playername')
+        queryset = Rotowiremissing.objects.all().distinct('playername').order_by('playername')
+        #queryset = CardedPlayers.objects.filter(player__isnull=True, season__exact=2016).order_by('playername')
+        #queryset = Rotowiremissing.objects.filter(active_mlb__exact=1).distinct('playername').order_by('playername')
         resource_name = 'RotowireMissing'
         fields = ['playername']
-	filtering = {
-	    'active_mlb': ALL,
- 	}
-        
+	#filtering = {
+	#    'active_mlb': ALL,
+ 	#}
+
 class PlayersResource(ModelResource):
     class Meta:
         queryset = Players.objects.all()

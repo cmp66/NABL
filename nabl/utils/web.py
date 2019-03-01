@@ -64,9 +64,15 @@ class Browser():
         self.br.select_form(nr=0)
 
         self.br.form['username']='cmp66'
-        self.br.form['p1']='buckeye'
+        self.br.form['password']='buckeye'
         self.br.submit()
         return self.br.response().read()
+
+    def openURL(self, url):
+        response = self.br.open(url)
+        html = response.read()
+
+        return html
 
         
     def addMissingRotowirePlayerEntry(self, name, team, date, text1, text2):
@@ -147,39 +153,57 @@ class Browser():
         return True
         
     def decodePage(self, html):
-            namematch=r'player.htm\?id=[\d]*\"\>([\w\s\'\.-]*)'
-            datematch=r'news-item-date\"\>(\d*/\d*/\d*)'
-            newsmatch=r'news-item-news\"\s*\>(.*)\</div'
-            analysismatch=r'\<p\>Fantasy\sAnalysis'
+            topmatch=r'\<div class=\\"news-update\\"\>'
+            topmatch2=r'\<div class=\\"news-update is-injured\\"\>'
+            namematch=r'player.php\?id=[\d]*\\"\>([\w\s\'\.-]*)'
+            datematch=r'news-update__timestamp\\"\>(.*)\<'
+            newsmatch=r'news-update__news\\"\>(.*)\<\\/div'
+            analysismatch=r'news-update__analysis\\"\>\<b\>ANALYSIS\<\\/b\>\<br\>(.*)\<'
             analysistext=r'[\s]*(.*)'
 
-            mode='date'
+            mode='topmatch'
             name = ''
             team= ''
             date = ''
             text1 = ''
             text2 = ''
 
-            for line in html.splitlines():
+            for line in html.split('\\r\\n'):
+            #for line in html.splitlines():
+                #print line
+                if mode == 'topmatch':
+                    found = re.search(topmatch, line)
+                    if found:
+                        mode = 'name'
+                        #print 'FOUND'
+                    else:
+                        found = re.search(topmatch2, line)
+                        if found:
+                            mode = 'name'
+                            #print 'FOUND INJURED'
+                    continue
                 if mode == 'name':
                     found = re.search(namematch, line)
                     if found:
                         name = found.group(1)
                         team = "MLB"
-                        mode = 'news'
+                        mode = 'date'
+                        #print name
                     continue
                 if mode == 'date':
                     found = re.search(datematch, line)
                     if found:
                         date = found.group(1)
-                        mode = 'name'
+                        mode = 'news'
+                        #print date
                     continue
                 if mode == 'news':
                     found = re.search(newsmatch, line)
                     if found:
                         text1 = found.group(1)
-                        #text1 = text1.decode("utf-8")
-                        mode = 'analysisfind'
+                        text1 = text1.decode("utf-8")
+                        mode = 'analysistext'
+                        #print text1
                     continue
                 if mode == 'analysisfind':
                     found = re.search(analysismatch, line)
@@ -187,34 +211,37 @@ class Browser():
                         mode = 'analysistext'
                     continue
                 if mode == 'analysistext':
-                    found = re.search(analysistext, line)
+                    found = re.search(analysismatch, line)
                     if found:
                         text2 = found.group(1)
-                        #text2 = text2.decode("utf-8")
+                        text2 = text2.decode("utf-8")
                         print name + "#" + date +"#" + text1 + "#" + text2
-                        foundDuplicate = self.addRotowirePlayerEntry(name, team, date, text1, text2, 2015)
-                        if foundDuplicate == False:
-                            return False
-                    mode = 'date'
+                        #foundDuplicate = self.addRotowirePlayerEntry(name, team, date, text1, text2, 2015)
+                        #if foundDuplicate == False:
+                        #    return False
+                        mode = 'topmatch'
                     continue
             return True
         
     def advancePage(self):
-        self.br.select_form(nr=1)
-        self.br.submit()
+        #self.br.select_form(nr=0)
+        self.br.submit(type='button')
         return self.br.response().read()
         
         
 browser = Browser()
 #readHTML = browser.browseURL("http://www.rotowire.com/baseball/latestnews.htm")
-readHTML = browser.browseURL("https://www.rotowire.com/baseball/news.php")
+readHTML = browser.browseURL("https://www.rotowire.com/users/login.php")
+#readHTML = browser.openURL("https://www.rotowire.com/baseball/news.php")
+readHTML = browser.openURL("https://www.rotowire.com/baseball/ajax/get-more-updates.php?type=custom&itemID=custom&lastUpdateTime=2019-02-28%2007%3A56%3A27.953&numUpdates=10&priority=3")
+#readHTML = browser.browseURL("https://www.rotowire.com/baseball/news.php")
 continueReading = browser.decodePage(readHTML)
 
 
-while continueReading == True:
-    sleep(5.0)
-    readHTML= browser.advancePage();
-    continueReading = browser.decodePage(readHTML)
+#while continueReading == True:
+#    sleep(2.0)
+#    readHTML= browser.advancePage();
+#    continueReading = browser.decodePage(readHTML)
     
 
 

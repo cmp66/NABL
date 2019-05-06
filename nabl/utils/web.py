@@ -64,9 +64,15 @@ class Browser():
         self.br.select_form(nr=0)
 
         self.br.form['username']='cmp66'
-        self.br.form['p1']='buckeye'
+        self.br.form['password']='buckeye'
         self.br.submit()
         return self.br.response().read()
+
+    def openURL(self, url):
+        response = self.br.open(url)
+        html = response.read()
+
+        return html
 
         
     def addMissingRotowirePlayerEntry(self, name, team, date, text1, text2):
@@ -207,7 +213,9 @@ class Browser():
         
 browser = Browser()
 #readHTML = browser.browseURL("http://www.rotowire.com/baseball/latestnews.htm")
-readHTML = browser.browseURL("https://www.rotowire.com/baseball/news.php")
+#readHTML = browser.browseURL("https://www.rotowire.com/baseball/news.php")
+readHTML = browser.browseURL("https://www.rotowire.com/users/login.php")
+readHTML = browser.openURL("https://www.rotowire.com/baseball/news.php")
 continueReading = browser.decodePage(readHTML)
 
 

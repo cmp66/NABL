@@ -19,12 +19,13 @@ class SiteSearch():
     def findPossibleMatches(self, httpResponseData):
 
         players = []
-        for m in re.finditer(r'<a.*href="(/players/\w/\w*.shtml)">',
-                             httpResponseData):
+        print 'looking through responses'
+        for m in re.finditer(r'<strong><a.*href="(/players/\w/\w*.shtml)">', httpResponseData):
             url = m.group(1)
             # displayName = re.sub(r'&nbsp;', " ", m.group(2))
             # nameMatch = re.match('(.\w*) (.*)', displayName)
             # print 'url:' + url + '   ---firstName:' + nameMatch.group(1) + '   ---lastname:' + nameMatch.group(2)
+            print "getting data for " + url
             playerData = self.getPlayerData(url)
             # playerData['firstname'] = nameMatch.group(1)
             # //playerData['lastname'] = nameMatch.group(2)
@@ -95,7 +96,8 @@ class SiteSearch():
     def playerSearch(self, playerName):
         players = []
         filteredName = re.sub(r'\s', "+", playerName)
-        conn = httplib.HTTPConnection("www.baseball-reference.com")
+        conn = httplib.HTTPSConnection("www.baseball-reference.com")
+        print 'looking for ' + filteredName
         conn.request("GET", "/search/search.fcgi?search=" + filteredName)
         response = conn.getresponse()
         responseData = response.read()
@@ -116,9 +118,10 @@ class SiteSearch():
         return players
 
     def getPlayerData(self, relativeUrl):
-        conn = httplib.HTTPConnection("www.baseball-reference.com")
+        conn = httplib.HTTPSConnection("www.baseball-reference.com")
         conn.request("GET", relativeUrl)
         response = conn.getresponse().read()
+        print "got player data"
 
         # print relativeUrl
         playerData = self.getPlayerDataFromPage(response)

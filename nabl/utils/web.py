@@ -16,12 +16,14 @@ from django.core.exceptions import MultipleObjectsReturned
 from django.db.utils import DatabaseError
 from dateutil import parser
 from django.db import transaction
+from datetime import datetime
 
 class Browser():
-    br = mechanize.Browser()
-    cj = cookielib.LWPCookieJar()
     
     def __init__(self):
+
+        self.br = mechanize.Browser()
+        self.cj = cookielib.LWPCookieJar()
         
         self.br.set_cookiejar(self.cj)
 
@@ -36,18 +38,18 @@ class Browser():
         self.br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
 
         # Want debugging messages?
-        #br.set_debug_http(True)
-        #br.set_debug_redirects(True)
-        #br.set_debug_responses(True)
+        self.br.set_debug_http(True)
+        self.br.set_debug_redirects(True)
+        self.br.set_debug_responses(True)
 
         # User-Agent (this is cheating, ok?)
-        self.br.addheaders = [('User-agent', 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1')]
+        self.br.addheaders = [('User-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36')]
     
     
     def browseURL(self, url):
-        self.br.add_password('rotowire.com', 'cmp66', 'buckeye')
+        #self.br.add_password('rotowire.com', 'cmp66', 'buckeye')
         response = self.br.open(url)
-        html = response.read()
+        #html = response.read()
 
 
 
@@ -63,12 +65,14 @@ class Browser():
         # Select the first (index zero) form
         self.br.select_form(nr=0)
 
-        self.br.form['username']='cmp66'
-        self.br.form['password']='buckeye'
-        self.br.submit()
-        return self.br.response().read()
+        self.br.form["username"]="cmp66"
+        self.br.form["password"]="buckeye"
+        self.br.form["g-recaptcha-response"]="03AOLTBLSdv_1Wt-Dt0_zHl5fR_JLaUQkLB1HObPco_dHOXUcY6odwhZenElRI5v_t9GVzdZly5htR0wRAv55eQg4KRhFUOslj6jtBW-kRxfBFbm7RPmaB_ukdlzKjE1qoowy9b7fb5eHiENgC5Ef2ehl4ItRVs0BPu_VlZmFCtbk40RHIUecFl3ZDg8UWwf-_GtqedttxZOTkW6r9JLQu1muJLUhTIGvdGvG0gdHHxBmH8HVrvQaY1KFMKrZvsTJeOQzZX8nEEwLXLJkHHOpTfFcd_mz_CWzJ8pM9hZsUmBOE8iICKF5_Cpdj-2UdXd8e2Ne4z8JF81eo"
+        response = self.br.submit()
+        return response.read()
 
     def openURL(self, url):
+        print self.cj
         response = self.br.open(url)
         html = response.read()
 
@@ -228,12 +232,17 @@ class Browser():
         self.br.submit(type='button')
         return self.br.response().read()
         
-        
+
+timestring="2019-02-28%2007%3A56%3A27.953&"
+date_string = datetime.now().replace(microsecond=0).isoformat().replace('T', '%20').replace(':', '%3A')
+url_string = "https://www.rotowire.com/baseball/ajax/get-more-updates.php?type=custom&itemID=custom&lastUpdateTime={}&numUpdates=2&priority=3".format(date_string)
+print url_string
 browser = Browser()
 #readHTML = browser.browseURL("http://www.rotowire.com/baseball/latestnews.htm")
-readHTML = browser.browseURL("https://www.rotowire.com/users/login.php")
+##readHTML = browser.browseURL("https://www.rotowire.com/users/login.php")
+#print readHTML
 #readHTML = browser.openURL("https://www.rotowire.com/baseball/news.php")
-readHTML = browser.openURL("https://www.rotowire.com/baseball/ajax/get-more-updates.php?type=custom&itemID=custom&lastUpdateTime=2019-02-28%2007%3A56%3A27.953&numUpdates=10&priority=3")
+readHTML = browser.openURL(url_string)
 #readHTML = browser.browseURL("https://www.rotowire.com/baseball/news.php")
 continueReading = browser.decodePage(readHTML)
 

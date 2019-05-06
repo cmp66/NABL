@@ -220,7 +220,7 @@ class Browser():
                         text2 = found.group(1)
                         text2 = text2.decode("utf-8")
                         print name + "#" + date +"#" + text1 + "#" + text2
-                        #foundDuplicate = self.addRotowirePlayerEntry(name, team, date, text1, text2, 2015)
+                        foundDuplicate = self.addRotowirePlayerEntry(name, team, date, text1, text2, 2015)
                         #if foundDuplicate == False:
                         #    return False
                         mode = 'topmatch'
@@ -233,9 +233,8 @@ class Browser():
         return self.br.response().read()
         
 
-timestring="2019-02-28%2007%3A56%3A27.953&"
 date_string = datetime.now().replace(microsecond=0).isoformat().replace('T', '%20').replace(':', '%3A')
-url_string = "https://www.rotowire.com/baseball/ajax/get-more-updates.php?type=custom&itemID=custom&lastUpdateTime={}&numUpdates=2&priority=3".format(date_string)
+url_string = "https://www.rotowire.com/baseball/ajax/get-more-updates.php?type=custom&itemID=custom&lastUpdateTime={}&numUpdates=250&priority=3".format(date_string)
 print url_string
 browser = Browser()
 #readHTML = browser.browseURL("http://www.rotowire.com/baseball/latestnews.htm")

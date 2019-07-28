@@ -30,7 +30,8 @@ if __name__ == '__main__':
     #    print player.playername
     for player in players:
         print player
-    
+
+    print 'first list done'    
     try:
         player = getPlayerByDisplayName(firstname + ' ' + lastname, 2013)
     except ObjectDoesNotExist:

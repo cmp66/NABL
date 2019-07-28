@@ -16,12 +16,14 @@ from django.core.exceptions import MultipleObjectsReturned
 from django.db.utils import DatabaseError
 from dateutil import parser
 from django.db import transaction
+from datetime import datetime
 
 class Browser():
-    br = mechanize.Browser()
-    cj = cookielib.LWPCookieJar()
     
     def __init__(self):
+
+        self.br = mechanize.Browser()
+        self.cj = cookielib.LWPCookieJar()
         
         self.br.set_cookiejar(self.cj)
 
@@ -36,18 +38,18 @@ class Browser():
         self.br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
 
         # Want debugging messages?
-        #br.set_debug_http(True)
-        #br.set_debug_redirects(True)
-        #br.set_debug_responses(True)
+        self.br.set_debug_http(True)
+        self.br.set_debug_redirects(True)
+        self.br.set_debug_responses(True)
 
         # User-Agent (this is cheating, ok?)
-        self.br.addheaders = [('User-agent', 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1')]
+        self.br.addheaders = [('User-agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36')]
     
     
     def browseURL(self, url):
-        self.br.add_password('rotowire.com', 'cmp66', 'buckeye')
+        #self.br.add_password('rotowire.com', 'cmp66', 'buckeye')
         response = self.br.open(url)
-        html = response.read()
+        #html = response.read()
 
 
 
@@ -63,10 +65,18 @@ class Browser():
         # Select the first (index zero) form
         self.br.select_form(nr=0)
 
-        self.br.form['username']='cmp66'
-        self.br.form['password']='buckeye'
-        self.br.submit()
-        return self.br.response().read()
+        self.br.form["username"]="cmp66"
+        self.br.form["password"]="buckeye"
+        self.br.form["g-recaptcha-response"]="03AOLTBLSdv_1Wt-Dt0_zHl5fR_JLaUQkLB1HObPco_dHOXUcY6odwhZenElRI5v_t9GVzdZly5htR0wRAv55eQg4KRhFUOslj6jtBW-kRxfBFbm7RPmaB_ukdlzKjE1qoowy9b7fb5eHiENgC5Ef2ehl4ItRVs0BPu_VlZmFCtbk40RHIUecFl3ZDg8UWwf-_GtqedttxZOTkW6r9JLQu1muJLUhTIGvdGvG0gdHHxBmH8HVrvQaY1KFMKrZvsTJeOQzZX8nEEwLXLJkHHOpTfFcd_mz_CWzJ8pM9hZsUmBOE8iICKF5_Cpdj-2UdXd8e2Ne4z8JF81eo"
+        response = self.br.submit()
+        return response.read()
+
+    def openURL(self, url):
+        print self.cj
+        response = self.br.open(url)
+        html = response.read()
+
+        return html
 
     def openURL(self, url):
         response = self.br.open(url)
@@ -153,39 +163,57 @@ class Browser():
         return True
         
     def decodePage(self, html):
-            namematch=r'player.htm\?id=[\d]*\"\>([\w\s\'\.-]*)'
-            datematch=r'news-item-date\"\>(\d*/\d*/\d*)'
-            newsmatch=r'news-item-news\"\s*\>(.*)\</div'
-            analysismatch=r'\<p\>Fantasy\sAnalysis'
+            topmatch=r'\<div class=\\"news-update\\"\>'
+            topmatch2=r'\<div class=\\"news-update is-injured\\"\>'
+            namematch=r'player.php\?id=[\d]*\\"\>([\w\s\'\.-]*)'
+            datematch=r'news-update__timestamp\\"\>(.*)\<'
+            newsmatch=r'news-update__news\\"\>(.*)\<\\/div'
+            analysismatch=r'news-update__analysis\\"\>\<b\>ANALYSIS\<\\/b\>\<br\>(.*)\<'
             analysistext=r'[\s]*(.*)'
 
-            mode='date'
+            mode='topmatch'
             name = ''
             team= ''
             date = ''
             text1 = ''
             text2 = ''
 
-            for line in html.splitlines():
+            for line in html.split('\\r\\n'):
+            #for line in html.splitlines():
+                #print line
+                if mode == 'topmatch':
+                    found = re.search(topmatch, line)
+                    if found:
+                        mode = 'name'
+                        #print 'FOUND'
+                    else:
+                        found = re.search(topmatch2, line)
+                        if found:
+                            mode = 'name'
+                            #print 'FOUND INJURED'
+                    continue
                 if mode == 'name':
                     found = re.search(namematch, line)
                     if found:
                         name = found.group(1)
                         team = "MLB"
-                        mode = 'news'
+                        mode = 'date'
+                        #print name
                     continue
                 if mode == 'date':
                     found = re.search(datematch, line)
                     if found:
                         date = found.group(1)
-                        mode = 'name'
+                        mode = 'news'
+                        #print date
                     continue
                 if mode == 'news':
                     found = re.search(newsmatch, line)
                     if found:
                         text1 = found.group(1)
-                        #text1 = text1.decode("utf-8")
-                        mode = 'analysisfind'
+                        text1 = text1.decode("utf-8")
+                        mode = 'analysistext'
+                        #print text1
                     continue
                 if mode == 'analysisfind':
                     found = re.search(analysismatch, line)
@@ -193,36 +221,47 @@ class Browser():
                         mode = 'analysistext'
                     continue
                 if mode == 'analysistext':
-                    found = re.search(analysistext, line)
+                    found = re.search(analysismatch, line)
                     if found:
                         text2 = found.group(1)
-                        #text2 = text2.decode("utf-8")
+                        text2 = text2.decode("utf-8")
                         print name + "#" + date +"#" + text1 + "#" + text2
                         foundDuplicate = self.addRotowirePlayerEntry(name, team, date, text1, text2, 2015)
-                        if foundDuplicate == False:
-                            return False
-                    mode = 'date'
+                        #if foundDuplicate == False:
+                        #    return False
+                        mode = 'topmatch'
                     continue
             return True
         
     def advancePage(self):
-        self.br.select_form(nr=1)
-        self.br.submit()
+        #self.br.select_form(nr=0)
+        self.br.submit(type='button')
         return self.br.response().read()
         
-        
+
+date_string = datetime.now().replace(microsecond=0).isoformat().replace('T', '%20').replace(':', '%3A')
+url_string = "https://www.rotowire.com/baseball/ajax/get-more-updates.php?type=custom&itemID=custom&lastUpdateTime={}&numUpdates=250&priority=3".format(date_string)
+print url_string
 browser = Browser()
 #readHTML = browser.browseURL("http://www.rotowire.com/baseball/latestnews.htm")
+<<<<<<< HEAD
+##readHTML = browser.browseURL("https://www.rotowire.com/users/login.php")
+#print readHTML
+#readHTML = browser.openURL("https://www.rotowire.com/baseball/news.php")
+readHTML = browser.openURL(url_string)
+#readHTML = browser.browseURL("https://www.rotowire.com/baseball/news.php")
+=======
 #readHTML = browser.browseURL("https://www.rotowire.com/baseball/news.php")
 readHTML = browser.browseURL("https://www.rotowire.com/users/login.php")
 readHTML = browser.openURL("https://www.rotowire.com/baseball/news.php")
+>>>>>>> master
 continueReading = browser.decodePage(readHTML)
 
 
-while continueReading == True:
-    sleep(5.0)
-    readHTML= browser.advancePage();
-    continueReading = browser.decodePage(readHTML)
+#while continueReading == True:
+#    sleep(2.0)
+#    readHTML= browser.advancePage();
+#    continueReading = browser.decodePage(readHTML)
     
 
 

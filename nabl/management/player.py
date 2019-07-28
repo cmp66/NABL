@@ -51,7 +51,11 @@ class PlayerManager():
                 relativelink = "/players" + relativelink
             
             #print 'looking up:' + player.firstname + ' ' + player.lastname + 'with link:' + relativelink
-            bbPlayerData = search.getPlayerData(relativelink)
+            try:
+                bbPlayerData = search.getPlayerData(relativelink)
+            except AttributeError:
+                print 'skipping due to error ' + player.firstname + ' ' + player.lastname + 'with link:' + relativelink
+                continue
             
             player.firstname = bbPlayerData['firstname'].decode("utf-8")
             player.lastname = bbPlayerData['lastname'].decode("utf-8")
@@ -169,6 +173,6 @@ class DraftPickUpdater():
 #updater.importNewPlayersForYear("/Users/cphillips/views/git/NABL/nabl/CardedList2011.csv", 2011)
 #updater.findMissingCardedPlayers()
 #updater.migratePlayers(2014, 2015)
-updater = DraftPickUpdater()
-updater.migrateDraftPicks(2018, 2019)
+#updater = DraftPickUpdater()
+#updater.migrateDraftPicks(2019, 2020)
 

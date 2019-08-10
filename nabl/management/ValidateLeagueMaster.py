@@ -40,7 +40,6 @@ class LeagueMaster():
             teamname = row[4]
 
             if teamname and not u'zz' in teamname:
-                print 'getting team for ' + teamname
                 nablTeam = self.getTeamByCity(teamname)
                 if nablTeam:
                     teams[teamname] = nablTeam
@@ -121,6 +120,6 @@ class LeagueMaster():
 if __name__ == '__main__':
     master = LeagueMaster()
     #projectRoot = os.environ["PROJECT_ROOT"]
-    master.loadMasterFile(u'/home/ec2-user/projects/nabl/nabl/files/NABL2019_Master.xlsx')
+    master.loadMasterFile(u'./nabl/files/NABL2019_Master.xlsx')
     teams = master.getTeamList()
     master.validatePlayersInFile(teams, 2019, 2015)

@@ -26,6 +26,9 @@ venv/*
 # vim temporary files
 *.swp
 
+# VS Code
+.vscode
+
 # Python project files
 *.pydevproject
 *.pyc

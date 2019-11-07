@@ -66,7 +66,7 @@ class PlayerManager():
             if bbPlayerData['position'] and bbPlayerData['position'].find("Pitcher") >= 0:
                 player.position = 'P'
                 
-            print ' Updating Player: ' + player.firstname + " " + player.lastname
+            #print ' Updating Player: ' + player.firstname + " " + player.lastname
             player.save()
             
     def importNewPlayersForYear(self, fileName, year):
@@ -123,6 +123,8 @@ class PlayerManager():
             firstname = namesearch.group(1)
             lastname = namesearch.group(2)
             players = self.getPlayerByFullName(firstname, lastname, season)
+
+            #print u"validating " + firstname.encode('utf-8') + ' ' + lastname.encode('utf-8')
             
             if len(players) == 1:
                 cardedplayer.player = players[0]
@@ -136,11 +138,11 @@ class PlayerManager():
                 if len(otherplayers) > 1:
                     print 'firstname #' + firstname +'# lastname #' + lastname + '#' + ' has multiple entries  by displayname'
                 if len(otherplayers) == 0:
-                    print 'firstname #' + firstname +'# lastname #' + lastname + '#' ' has no player entry using ' + cardedplayer.playername     
+                    print 'firstname #' + firstname.encode('utf-8') +'# lastname #' + lastname.encode('utf-8') + '#' ' has no player entry using ' + cardedplayer.playername.encode('utf-8')     
                 if len(otherplayers) == 1:
                     otherplayer = otherplayers[0]
                     newcardedname = otherplayer.firstname + ' ' + otherplayer.lastname
-                    print 'updating ' + cardedplayer.playername + ' to ' + newcardedname
+                    #print u'updating ' + cardedplayer.playername.encode('utf-8') + u' to ' + newcardedname.encode('utf-8')
                     cardedplayer.playername = newcardedname 
                     cardedplayer.player = otherplayer
                     cardedplayer.save() 

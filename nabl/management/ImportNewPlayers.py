@@ -7,7 +7,7 @@ from player import PlayerManager
 
   
 updater = PlayerManager()
-#updater.importNewPlayersForYear("/home/ec2-user/projects/nabl/nabl/CardedList2017.csv", 2017)
-updater.findMissingCardedPlayers(2018, 2018)
+#updater.importNewPlayersForYear("/home/ec2-user/projects/nabl/nabl/CardedList2019.csv", 2019)
+updater.findMissingCardedPlayers(2019, 2019)
     
         

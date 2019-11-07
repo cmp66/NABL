@@ -31,4 +31,4 @@ def migrateMissingRecords(requiredYear):
         except MultipleObjectsReturned :
             print 'Multiple player for  missing entry for ' + missingRecord.playername
   
-migrateMissingRecords(2015)      
+migrateMissingRecords(2019)      

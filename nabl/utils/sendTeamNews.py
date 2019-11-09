@@ -58,7 +58,7 @@ def sendEmailNews(playerList,emailAddresses, subject):
     server.close()
     
 assignsList = Rosterassign.objects.filter(year=2019).values_list("playerid")
-unownedplayers = Players.objects.filter(endyear=2018).exclude(id__in=assignsList)
+unownedplayers = Players.objects.filter(endyear=2019).exclude(id__in=assignsList)
     
 for teamresult in Teamresults.objects.filter(year=2019):
     emailAddresses = Emailaddresses.objects.filter(memberid=teamresult.teamid.memberid)

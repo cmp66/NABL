@@ -60,7 +60,7 @@ class LeagueMaster():
             except ObjectDoesNotExist:
                 return None
 
-    def validatePlayersInFile(self, teams, rosterYear, minYear):
+    def validatePlayersInFile(self, teams, rosterYear, cardedYear, minYear):
 
         count = 0
         sh = self.wb.sheet_by_name(u'Rosters and available players')
@@ -101,12 +101,12 @@ class LeagueMaster():
 
                 if mlbteam != 'unc':
                     try:
-                        self.getCardedPlayer(player.firstname + ' ' + player.lastname, rosterYear - 1)
+                        self.getCardedPlayer(player.firstname + ' ' + player.lastname, cardedYear) 
                     except ObjectDoesNotExist:
                         print 'cannot find card for  player: #' + firstname + "# #" + lastname + '#'
                 else:
                     try:
-                        self.getCardedPlayer(player.firstname + ' ' + player.lastname, rosterYear - 1)
+                        self.getCardedPlayer(player.firstname + ' ' + player.lastname, cardedYear)
                         print 'showing card for unc  player: #' + firstname + "# #" + lastname + '#'
                     except ObjectDoesNotExist:
                         pass
@@ -120,6 +120,6 @@ class LeagueMaster():
 if __name__ == '__main__':
     master = LeagueMaster()
     #projectRoot = os.environ["PROJECT_ROOT"]
-    master.loadMasterFile(u'./nabl/files/NABL2019_Master.xlsx')
+    master.loadMasterFile(u'./nabl/files/NABL2020_Master.xlsx')
     teams = master.getTeamList()
-    master.validatePlayersInFile(teams, 2019, 2015)
+    master.validatePlayersInFile(teams, 2019, 2019, 2015)

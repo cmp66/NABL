@@ -26,6 +26,9 @@ def sendEmailNews(playerList,emailAddresses, subject):
     today = datetime.today().date()
     yesterday = today - timedelta(days=1)
 
+    print str(today)
+    print str(yesterday)
+
     news = Rotowire.objects.filter(player__in=playerList, reportdate__gte=yesterday, reportdate__lte=today).order_by('player__lastname', 'reportdate')
 
     body = ''

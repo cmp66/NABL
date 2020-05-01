@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="jars">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jars/activation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/commons-codec-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/commons-httpclient.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/commons-lang-2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/jakarta-oro-2.0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/jakarta-regexp-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/jdom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/jxl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/log4j.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/postgresql-8.4-701.jdbc4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/servlet-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/spring.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

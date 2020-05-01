@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="sbautil">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jars/sbautil.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

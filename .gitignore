@@ -29,3 +29,7 @@ venv/*
 # Python project files
 *.pydevproject
 *.pyc
+
+#Build directories
+SBABase/target
+SBABase/out

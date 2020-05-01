@@ -78,6 +78,7 @@ class LeagueMaster():
             if firstname == '' or lastname == '':
                 continue
 
+            #print 'Validating player {} {}'.format(firstname, lastname)
             player = self.getPlayer(firstname, lastname, minYear)
 
             if player:
@@ -122,6 +123,6 @@ class LeagueMaster():
 if __name__ == '__main__':
     master = LeagueMaster()
     #projectRoot = os.environ["PROJECT_ROOT"]
-    master.loadMasterFile(u'./nabl/files/NABL_2020_Master_040120.xlsx')
+    master.loadMasterFile(u'./nabl/files/NABL2020_Master_050120.xlsx')
     teams = master.getTeamList()
     master.validatePlayersInFile(teams, 2020, 2019, 2015)

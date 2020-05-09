@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>  
+	<bean id="propertyConfigurer" 
+      class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    	<property name="location"><value>/WEB-INF/apba.properties</value></property>
+  	</bean>
+
+ 	<!--  Page Mapper classes  -->
+ 	<bean id="MainPageGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.MainPageGenerator" >
+ 		<property name="teamManager"><ref bean="TeamManager"/></property>
+ 		<property name="transactionManager"><ref bean="TransactionManager"/></property>
+ 		<property name="scheduleManager"><ref bean="ScheduleManager"/></property>
+ 		<property name="numDisplaySeries"><value>${apba.numberSeriesToDisplay}</value></property>
+ 		<property name="numDisplayTrades"><value>${apba.numberTradesToDisplay}</value></property>
+ 	</bean>
+ 	<bean id="ConstitutionGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.ConstitutionGenerator">
+ 		<property name="teamManager"><ref bean="TeamManager"/></property>
+ 	</bean>
+ 	
+ 	<bean id="DraftGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.DraftGenerator">
+ 		<property name="teamManager"><ref bean="TeamManager"/></property>
+ 		<property name="transactionManager"><ref bean="TransactionManager"/></property>
+ 		<property name="cardedList"><ref bean="CardedList"/></property>
+ 	</bean>
+ 	
+ 	<bean id="FeatureGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.FeatureGenerator">
+ 		<property name="teamManager"><ref bean="TeamManager"/></property>
+ 	</bean>
+ 		
+ 	<bean id="HistoryGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.HistoryGenerator">
+ 		<property name="teamManager"><ref bean="TeamManager"/></property>
+ 	</bean>
+ 		
+ 	<bean id="InstructionsRosterGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.InstructionsRosterGenerator">
+ 		<property name="teamManager"><ref bean="TeamManager"/></property>
+ 	</bean>
+ 		
+ 	<bean id="ManagementGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.ManagementGenerator">
+ 		<property name="teamManager"><ref bean="TeamManager"/></property>
+ 		<property name="transactionManager"><ref bean="TransactionManager"/></property>
+ 		<property name="statsManager"><ref bean="StatsManager"/></property>
+ 	</bean>
+ 		
+ 	<bean id="MemberGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.MemberGenerator">
+ 		<property name="teamManager"><ref bean="TeamManager"/></property>
+ 	</bean>
+ 		
+ 	<bean id="PlayerAssignGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.PlayerAssignGenerator">
+ 		<property name="teamManager"><ref bean="TeamManager"/></property>
+ 		<property name="statsManager"><ref bean="StatsManager"/></property>
+ 	</bean>
+ 		
+ 	<bean id="PlayerGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.PlayerGenerator">
+ 		<property name="playerManager"><ref bean="PlayerManager"/></property>
+ 	</bean>
+ 		
+ 	<bean id="RosterGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.RosterGenerator">
+ 		<property name="teamManager"><ref bean="TeamManager"/></property>
+ 		<property name="transactionManager"><ref bean="TransactionManager"/></property>
+ 	</bean>
+ 		
+ 	<bean id="RotoWireGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.RotoWireGenerator">
+ 		<property name="rotoWire"><ref bean="RotoWire"/></property>
+ 	</bean>
+ 		
+ 	<bean id="ScheduleGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.ScheduleGenerator">
+ 		<property name="scheduleManager"><ref bean="ScheduleManager"/></property>
+ 		<property name="teamStat"><ref bean="TeamStat"/></property>
+ 	</bean>
+ 		
+ 	<bean id="ScoutGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.ScoutGenerator">
+ 		<property name="teamManager"><ref bean="TeamManager"/></property>
+ 		<property name="transactionManager"><ref bean="TransactionManager"/></property>
+ 	</bean>
+ 	
+ 	<bean id="SeriesGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.SeriesGenerator" >
+ 		<property name="scheduleManager"><ref bean="ScheduleManager"/></property>
+ 		<property name="emailManager"><ref bean="EmailManager"/></property>
+ 	</bean>
+ 		
+ 	<bean id="StatsGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.StatsGenerator" >
+ 		<property name="statsManager"><ref bean="StatsManager"/></property>
+ 		<property name="playerCache"><ref bean="PlayerCache"/></property>
+ 	</bean>
+ 		
+ 	<bean id="SeriesStatsDetailGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.SeriesStatsDetailGenerator" >
+ 		<property name="statsManager"><ref bean="StatsManager"/></property>
+ 		<property name="playerCache"><ref bean="PlayerCache"/></property>
+ 	</bean>
+ 	
+ 	<bean id="TeamOverviewGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.TeamOverviewGenerator" >
+ 		<property name="teamManager"><ref bean="TeamManager"/></property>
+ 	</bean>
+ 		
+ 	<bean id="TransactionGenerator"
+ 		class="com.wahoo.apba.web.pagegenerators.TransactionGenerator">
+ 		<property name="transactionManager"><ref bean="TransactionManager"/></property>
+ 		<property name="cardedList"><ref bean="CardedList"/></property>
+ 	</bean>
+ 		
+	<bean id="controllerMappings"
+		class="com.wahoo.apba.web.util.ControllerMapper">
+		<property name="pageMap">
+			<map>
+				<entry key="main">
+					<ref bean="MainPageGenerator" />
+				</entry>
+				<entry key="constitution">
+					<ref bean="ConstitutionGenerator" />
+				</entry>
+				<entry key="draft">
+					<ref bean="DraftGenerator" />
+				</entry>
+				<entry key="playerassign">
+					<ref bean="PlayerAssignGenerator" />
+				</entry>
+				<entry key="features">
+					<ref bean="FeatureGenerator" />
+				</entry>
+				<entry key="history">
+					<ref bean="HistoryGenerator" />
+				</entry>
+				<entry key="instructionsroster">
+					<ref bean="InstructionsRosterGenerator" />
+				</entry>
+				<entry key="management">
+					<ref bean="ManagementGenerator" />
+				</entry>
+				<entry key="members">
+					<ref bean="MemberGenerator" />
+				</entry>
+				<entry key="player">
+					<ref bean="PlayerGenerator" />
+				</entry>
+				<entry key="roster">
+					<ref bean="RosterGenerator" />
+				</entry>
+				<entry key="rotowire">
+					<ref bean="RotoWireGenerator" />
+				</entry>
+				<entry key="schedule">
+					<ref bean="ScheduleGenerator" />
+				</entry>
+				<entry key="scout">
+					<ref bean="ScoutGenerator" />
+				</entry>
+				<entry key="series">
+					<ref bean="SeriesGenerator" />
+				</entry>
+				<entry key="stats">
+					<ref bean="StatsGenerator" />
+				</entry>
+				<entry key="seriesstatsdetail">
+					<ref bean="SeriesStatsDetailGenerator" />
+				</entry>
+				<entry key="teamoverview">
+					<ref bean="TeamOverviewGenerator" />
+				</entry>
+				<entry key="transaction">
+					<ref bean="TransactionGenerator" />
+				</entry>
+			</map>
+		</property>
+	</bean>	
+	
+	<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>${apba.datasource}</value>
+		</property>
+	</bean>
+	
+	<bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource"><ref bean="dataSource"/></property>
+	</bean>
+	
+	<bean id="PlayerManager"
+		  class="com.wahoo.apba.resourcemanagers.PlayerManager">
+		<property name="jdbcTemplate"><ref bean="jdbcTemplate"/></property>
+		<property name="playerCache"><ref bean="PlayerCache"/></property>
+		<property name="rotoPlayerManager"><ref bean="RotoPlayerManager"/></property>
+		<property name="teamManager"><ref bean="TeamManager"/></property>
+		<property name="statsManager"><ref bean="StatsManager"/></property>
+	</bean>
+	
+	<bean id="ScheduleManager"
+		  class="com.wahoo.apba.resourcemanagers.ScheduleManager">
+		<property name="transactionManager"><ref bean="TransactionManager"/></property>
+		<property name="teamManager"><ref bean="TeamManager"/></property>
+		<property name="statsManager"><ref bean="StatsManager"/></property>
+		<property name="teamStat"><ref bean="TeamStat"/></property>
+		<property name="playerCache"><ref bean="PlayerCache"/></property>
+	</bean>
+	
+	<bean id="TransactionManager"
+		  class="com.wahoo.apba.resourcemanagers.TransactionManager">
+		<property name="playerCache"><ref bean="PlayerCache"/></property>
+		<property name="cardedList"><ref bean="CardedList"/></property>
+		<property name="cutList"><ref bean="CutList"/></property>
+		<property name="teamManager"><ref bean="TeamManager"/></property>
+		<property name="currentStandSeason"><value>${apba.currentStandingsSeason}</value></property>
+	</bean>
+	
+	<bean id="StatsManager"
+		  class="com.wahoo.apba.resourcemanagers.StatsManager">
+		<property name="transactionManager"><ref bean="TransactionManager"/></property>
+		<property name="teamManager"><ref bean="TeamManager"/></property>
+		<property name="teamStat"><ref bean="TeamStat"/></property>
+		<property name="playerCache"><ref bean="PlayerCache"/></property>
+		<property name="ipQual"><value>${apba.ipqual}</value></property>
+		<property name="abQual"><value>${apba.abqual}</value></property>
+	</bean>
+	
+	<bean id="TeamManager"
+		  class="com.wahoo.apba.resourcemanagers.TeamManager">
+		 <property name="divisionCache"><ref bean="DivisionCache"/></property>
+		 <property name="playerCache"><ref bean="PlayerCache"/></property>
+		 <property name="cardCache"><ref bean="CardCache"/></property>
+		 <property name="cardedList"><ref bean="CardedList"/></property>
+		 <property name="cutList"><ref bean="CutList"/></property>
+		 <property name="transactionManager"><ref bean="TransactionManager"/></property>
+		 <property name="playerManager"><ref bean="PlayerManager"/></property>
+		 <property name="scheduleManager"><ref bean="ScheduleManager"/></property>
+		 <property name="userManager"><ref bean="UserManager"/></property>
+	</bean>
+	
+	<bean id="RotoPlayerManager"
+		  class="com.wahoo.apba.resourcemanagers.RotoPlayerManager">
+		  <property name="jdbcTemplate"><ref bean="jdbcTemplate"/></property>
+	</bean>
+	
+	<bean id="CutList"
+		  class="com.wahoo.apba.resourcemanagers.CutList"
+		  init-method="init">
+		  <property name="jdbcTemplate"><ref bean="jdbcTemplate"/></property>
+	</bean>
+	
+	<bean id="EmailManager"
+		  class="com.wahoo.apba.resourcemanagers.EmailManager">
+	</bean>
+	
+	<bean id="UserManager"
+		  class="com.wahoo.apba.resourcemanagers.UserManager">
+		 <property name="emailManager"><ref bean="EmailManager"/></property>
+	</bean>
+	
+	<bean id="CardCache"
+		  class="com.wahoo.apba.resourcemanagers.CardCache"
+		  init-method="createMap">
+		  <property name="cardfile">
+			<value>${apba.cardfile}</value>
+		</property>
+		</bean>
+	
+	<bean id="PlayerCache"
+		  class="com.wahoo.apba.resourcemanagers.PlayerCache"/>
+		  
+	<bean id="DivisionCache"
+		  class="com.wahoo.apba.resourcemanagers.DivisionCache"/>
+		  
+	<bean id="TeamCache"
+		  class="com.wahoo.apba.resourcemanagers.TeamCache"/>
+		  
+	<bean id="CardedList"
+		  class="com.wahoo.apba.resourcemanagers.CardedList"
+		  init-method="createList">
+		 <property name="playerManager"><ref bean="PlayerManager"/></property>
+		 <property name="transactionManager"><ref bean="TransactionManager"/></property>
+		 <property name="playerCache"><ref bean="PlayerCache"/></property>
+		 <property name="teamManager"><ref bean="TeamManager"/></property>
+		 <property name="playerList"><value>${apba.cardlist}</value></property>
+		 <property name="cutList"><ref bean="CutList"/></property>
+		 <property name="getId"><value>true</value></property>
+	</bean>
+	
+	<bean id="RotoWire"
+		  class="com.wahoo.apba.database.util.RotoWire">
+		 <property name="jdbcTemplate"><ref bean="jdbcTemplate"/></property>
+		 <property name="rotoPlayerManager"><ref bean="RotoPlayerManager"/></property>
+	</bean>
+	
+	<bean id="TeamStat"
+		  class="com.wahoo.apba.excel.TeamStat"
+		  init-method="init">
+		 <property name="statsManager"><ref bean="StatsManager"/></property>
+		 <property name="exportFilesDir"><value>${apba.exportFilesDir}</value></property>
+		 <property name="importFilesDir"><value>${apba.importFilesDir}</value></property>
+	</bean>
+
+</beans>

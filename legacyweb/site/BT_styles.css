@@ -1,0 +1,466 @@
+PRE {font-family:monospaced;}
+
+body {
+	background-repeat : no-repeat;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:13px;
+	font-weight: normal;
+	/*background-color : #000000;*/
+}
+
+body.artBody {
+	background-repeat : no-repeat;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:13px;
+	font-weight: normal;
+	background-color : #ffffff;
+}
+
+p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:13px;
+	font-weight: normal;
+}
+
+td {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:13px;
+	font-weight: normal;
+}
+
+div {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:13px;
+	font-weight: normal;
+}
+
+.navCell{
+	background-color : #00297B;
+}
+
+.bgcolor2   { background-color: #ffcc00 }
+
+/*.BlackSmallLink {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+	text-decoration : none;
+}*/
+
+A.BlackSmallLink {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+	text-decoration : none;
+}
+
+A.BlackSmallLink:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+	text-decoration : underline;
+}
+
+.BlackSmallText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #000000;
+}
+/*.BlueLinks {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #003399;
+	text-decoration: underline;
+}*/
+
+A.BlueLinks {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #003399;
+	text-decoration: underline;
+}
+
+A.BlueLinks:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #003399;
+	text-decoration: underline;
+}
+
+A.BlueLinks:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	color: #003399;
+	text-decoration: underline;
+}
+
+.Bluetext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color : #003399;
+}
+
+.BluetextBold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #003399;
+}
+
+.Whitetext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+
+.WhitetextBold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.WhiteTitletext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+
+.Blacktext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #000000;
+}
+
+.BlacktextBold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+
+.Featuretext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	color: #000000;
+}
+
+.FeatureTextBold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	color: #000000;
+}
+
+.BlueTitles{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #003399;
+}
+
+/*.FeatureBlueLinks {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: underline;
+}*/
+
+A.FeatureBlueLinks {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: underline;
+}
+
+A.FeatureBlueLinks:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: underline;
+}
+
+A.FeatureBlueLinks:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #003399;
+	text-decoration: underline;
+}
+
+/*.LBlueSmallText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #C6DEFF;
+}*/
+
+A.LBlueSmallText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #C6DEFF;
+}
+
+A.LBlueSmallText:hover{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #C6DEFF;
+}
+
+A.LBlueSmallText:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #C6DEFF;
+}
+
+.tableHeaderText{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #FFFFFF; 
+	text-align: center
+}
+.tableText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+.WhiteDateText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight : bold;
+	font-style : normal;
+	font-size: 12px;
+	color: #FFFFFF;
+}
+.WhiteInnerTableTitleBold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+/*.WhiteLinks {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: underline;
+}*/
+A.WhiteLinks {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+A.WhiteLinks:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+A.WhiteLinks:hover{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+/*.WhiteLinksPicked {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFCC00;
+	text-decoration: underline;
+}*/
+A.WhiteLinksPicked {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFCC00;
+	text-decoration: underline;
+}
+A.WhiteLinksPicked:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFCC00;
+	text-decoration: underline;
+}
+A.WhiteLinksPicked:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFCC00;
+	text-decoration: underline;
+}
+td.WhiteSmallText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	text-decoration : none;
+	color: #FFFFFF;
+}
+A.WhiteSmallText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	text-decoration : none;
+	color: #FFFFFF;
+}
+
+a.WhiteSmallText:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	text-decoration : underline;
+	color: #FFFFFF;
+}
+
+/*.WhiteTitleBold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 19px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration : none;
+}*/
+
+td.WhiteTitleBold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 19px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration : none;
+}
+
+A.WhiteTitleBold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #003366;
+	text-decoration : underline;
+}
+A.WhiteTitleBold:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 19px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration : none;
+}
+A.WhiteTitleBold:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 19px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration : none;
+}
+/*.yellowLinks {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #FFCC00;
+	text-decoration: underline;
+}*/
+A.yellowLinks {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #FFCC00;
+	text-decoration: underline;
+}
+a.yellowLinks:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #ffed85;
+	text-decoration: underline;
+}
+.yellowSmallText{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: normal;
+	color: #003333;
+}
+/*.YellowTitles {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #FFCC00;
+}*/
+a.YellowTitles {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #FFCC00;
+}
+a.YellowTitles:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffed85;
+}
+a.YellowTitles16 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	color: #FFCC00;
+; text-decoration: underline
+}
+a.YellowTitles16:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	font-weight: bold;
+	color: #ffed85;
+}
+a.YellowTitles18 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	font-weight: bold;
+	color: #FFCC00;
+; background-color: #99FFFF
+}
+a.YellowTitles18:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	font-weight: bold;
+	color: #ffed85;
+}
+td.yellowSmallTitles {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFCC00;
+}
+a.yellowSmallTitles {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFCC00;
+}
+a.yellowSmallTitles:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #ffed85;
+}

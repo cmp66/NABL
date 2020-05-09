@@ -1,0 +1,388 @@
+BODY
+{
+    BACKGROUND-COLOR: black;
+    MARGIN: 0px
+}
+BODY.NoTab
+{
+    BACKGROUND-COLOR: D4DBDB;
+    COLOR: black;
+    MARGIN: 0px
+}
+BODY.FrameBD
+{
+    BACKGROUND-COLOR: white;
+    COLOR: black;
+    MARGIN: 0px 0px
+}
+TABLE.TopMenuTB
+{
+    BACKGROUND-COLOR: D4DBDB
+}
+TABLE.MenuBarTB
+{
+    BACKGROUND-COLOR: #4682b4
+}
+TD.MenuBarTD
+{
+    COLOR: white;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+TABLE.PageNavBarTB
+{
+    BACKGROUND-COLOR: silver
+}
+TD.PageNavBarTD
+{
+    COLOR: white;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+TABLE.PageLayoutTB
+{
+    BACKGROUND-COLOR: #006600; border: #CCCCCC; border-style: ridge; border-top-width: thin; border-right-width: thin; border-bottom-width: thin; border-left-width: thin
+}
+TABLE.PageLayoutTB2
+{
+    BACKGROUND-COLOR: D4DBDB
+}
+TH.PageLayoutSectionTH
+{
+    BACKGROUND-COLOR: #688AAF;
+    COLOR: white;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: left
+}
+TH.PageLayoutTH
+{
+    BACKGROUND-COLOR: #688AAF;
+    COLOR: white;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center
+}
+TH.PageLayoutTH2
+{
+    BACKGROUND-COLOR: #688AAF;
+    COLOR: white;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: left
+}
+TH.PageLayoutNestedTH
+{
+    BACKGROUND-COLOR: #333366;
+    COLOR: white;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center
+}
+TD.PageLayoutTitleTD
+{
+	 COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 14pt;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: center
+}
+TD.PageLayoutTD
+{
+    COLOR: white;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+TD.PageLayoutTDSmall
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-Serif;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT: normal
+}
+.ValError
+{
+    COLOR: red;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+INPUT.TBReg
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+INPUT.TBSmall
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: normal
+}
+INPUT.BTNReg
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+TEXTAREA.TAReg
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+.TAReg
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+SELECT.SELReg
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+
+
+.SELReg
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+
+
+.ReadOnly
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: normal
+}
+.Label
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Error
+{
+    COLOR: red;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 11pt;
+    FONT-WEIGHT: normal
+}
+.LabelSmall
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: bold
+}
+.BigLabel
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 12pt;
+    FONT-WEIGHT: bold
+}
+.LabelLogon
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Small
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 8pt;
+}
+.TopMenu
+{
+    COLOR: white;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 8pt;
+}
+DIV.HideTab
+{
+    DISPLAY: none
+}
+DIV.ShowTab
+{
+}
+TABLE.TabTB
+{
+    BACKGROUND-COLOR: white
+}
+TH.TabSelectedTH
+{
+    BACKGROUND-COLOR: #666699;
+    COLOR: white;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: left
+}
+TH.TabUnselectedTH
+{
+    BACKGROUND-COLOR: #666699;
+    COLOR: #4682b4;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    TEXT-ALIGN: left
+}
+DIV.HideHTML
+{
+    DISPLAY: none
+}
+DIV.ShowHTML
+{
+}
+A:visited
+{
+    COLOR: #666699;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-STYLE: normal
+}
+A:active
+{
+    COLOR: #666699;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-STYLE: normal;
+    FONT-WEIGHT: bold
+}
+A:link
+{
+    COLOR: #669966;
+    FONT-FAMILY: Arial, sans-serif;
+    FONT-SIZE: 10pt;
+    FONT-STYLE: normal
+}
+P.HelpText
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 10pt
+}
+.HelpTitle
+{
+    COLOR: #336699;
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 14pt;
+    FONT-WEIGHT: bold
+}
+.HelpSectionHeader
+{
+    COLOR: #336699;
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 12pt;
+    FONT-WEIGHT: bold
+}
+BODY.HelpBD
+{
+    BACKGROUND-COLOR: #fbfbdd
+}
+.HelpBullets
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 10pt
+}
+UL.HelpBullets
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, 'MS Sans Serif'
+}
+.GenTitle
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 14pt;
+    FONT-WEIGHT: bold
+}
+.GenSectionHeader
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.GenBullets
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 10pt
+}
+BODY.GenBD
+{
+    COLOR: black
+}
+TABLE.BotMenuTB
+{
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 8pt
+}
+.BotMenu
+{
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 8pt
+}
+TD.HelpTD
+{
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 10pt
+}
+TH.HelpTH
+{
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+TH.HelpHeaderTH
+{
+    BACKGROUND-COLOR: #c0c0c0;
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 10pt
+}
+P.GenText
+{
+    COLOR: #FFFFFF;
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 10pt
+; background-color: #000000
+}
+UL.GenBullets
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, 'MS Sans Serif';
+    FONT-SIZE: 10pt
+}
+.ttip 
+{
+	border:1px solid black;
+	font-size:12px;
+	layer-background-color:lightyellow;
+	background-color:lightyellow
+}
+.PageLayoutTDTitle { COLOR: white; FONT-FAMILY: Arial, sans-serif; FONT-SIZE: 10pt; FONT-WEIGHT: bold}

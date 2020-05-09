@@ -13,7 +13,7 @@ DATABASES = {
         'NAME': 'NABL',            # Or path to database file if using sqlite3.
         'USER': 'sbaapba',             # Not used with sqlite3.
         'PASSWORD': 'apba1166',         # Not used with sqlite3.
-        'HOST': 'localhost',             # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': '192.168.1.14',             # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '5432'             # Set to empty string for default. Not used with sqlite3.
     }
 }
@@ -107,7 +107,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/ec2-user/projects/nabl/nabl/templates',
+    '/root/nabl/templates',
     '/home/ec2-user/projects/nabl/venv/django/contrib/admin/templates',
 )
 
@@ -125,9 +125,10 @@ INSTALLED_APPS = (
 
 STATICFILES_DIRS = (
     '/usr/share/nginx/static',
-    'home/ec2-user/projects/nabl/static'
+    '/root/static',
+    '/usr/local/django/contrib/admin/static'
 )
 
-STATIC_ROOT = "/home/ec2-user/projects/static"
+STATIC_ROOT = "/root/static"
 
 STATIC_URL='/static/'

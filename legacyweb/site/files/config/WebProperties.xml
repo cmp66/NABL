@@ -1,0 +1,37 @@
+<properties>
+    <head> Startup Props</head>
+    <creator> Text Editor </creator>
+    <section name="WebApp">
+        <prop name="Cardfile" value="/home/cphillips/dev/apache-tomcat-5.5.12/webapps/NABL/2004cards.csv" /> 
+        <prop name="CardedList" value="/home/cphillips/dev/apache-tomcat-5.5.12/webapps/NABL/CardedList.csv" />      
+        <prop name="CurrentStatsSeason" value="2005" />  
+        <prop name="CurrentStandingsSeason" value="2005" />
+        <prop name="CurrentTransactionsSeason" value="2005" />
+        <prop name="AltDataSource" value="java:/MSSQLDS" />
+        <prop name="PrimaryDataSource" value="jdbc/POSTGRESDSNABL" />
+        <prop name="ABQual" value="250" />
+        <prop name="IPQual" value="80" />
+        <prop name="EnterOtherStats" value="false" />          
+    </section>
+</properties>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        

@@ -1,9 +1,11 @@
 name: NABL
 on: [push]
+env: 
+  SHORTSHA: $(git rev-parse --short=8 ${{ github.sha }})
 
 jobs:
   build:
-    name: SBA maven
+    name: NABL CI
     runs-on: ubuntu-latest
 
     steps:
@@ -12,5 +14,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with maven
+    - name: SBABase build with maven
       run: cd SBABase; mvn -B package
+    - name: Docker build
+      run docker build . --file Dockerfile --tag nabl:$(SHORTSHA)
+

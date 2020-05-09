@@ -21,12 +21,12 @@ jobs:
         path: SBABase/target/sba.jar
     - name: Get Commit SHA 
       id: get_sha
-      run: echo ::set-env name=SORTSHA::$(git rev-parse --short=8 ${{ github.sha }})
+      run: echo ::set-env name=SHORTSHA::$(git rev-parse --short=8 ${{ github.sha }})
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: wahoo66/nabl
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        tags: "latest,${{ env.RELEASE_VERSION }}"
+        tags: "latest,${{ env.SHORTSHA }}"
 

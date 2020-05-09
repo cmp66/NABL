@@ -22,5 +22,5 @@ jobs:
         name: sba-jar
         path: SBABase/target/sba.jar
     - name: Docker build
-      run: docker build . --file Dockerfile --tag nabl:$(SHORTSHA)
+      run: docker build . --file Dockerfile --tag nabl:${SHORTSHA}
 

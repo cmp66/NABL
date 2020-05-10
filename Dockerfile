@@ -10,7 +10,8 @@ COPY legacyweb/site/ /usr/local/tomcat/webapps/NABL/
 COPY SBABase/target/sba.jar /usr/local/tomcat/webapps/NABL/WEB-INF/lib/ 
 COPY legacyweb/libs/postgresql-9.4.jdbc.jar /usr/local/tomcat/webapps/NABL/WEB-INF/lib/
 
-COPY legacyweb/conf/nabl.conf /etc/nginx/conf.d/nabl.conf
+COPY legacyweb/conf/etc/nginx/conf.d/nabl.conf /etc/nginx/conf.d/nabl.conf
+COPY legacyweb/conf/etc/cron.d/nablnews /etc/cron.d/nablnews
 
 COPY nabl/ /root/nabl
 COPY requirements.txt /root

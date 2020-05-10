@@ -107,8 +107,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/ec2-user/projects/nabl/nabl/templates',
-    '/home/ec2-user/projects/nabl/venv/django/contrib/admin/templates',
+    '/root/nabl/templates'
 )
 
 INSTALLED_APPS = (
@@ -125,9 +124,10 @@ INSTALLED_APPS = (
 
 STATICFILES_DIRS = (
     '/usr/share/nginx/static',
-    'home/ec2-user/projects/nabl/static'
+    '/root/static',
+    '/usr/local/django/contrib/admin/static'
 )
 
-STATIC_ROOT = "/home/ec2-user/projects/static"
+STATIC_ROOT = "/root/static"
 
 STATIC_URL='/static/'

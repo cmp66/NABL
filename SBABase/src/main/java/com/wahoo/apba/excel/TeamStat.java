@@ -86,10 +86,13 @@ public class TeamStat
         //File wkDir = new File(WebProperties.getWebProperties().get("ExportFilesDir") + "/series");
     	File wkDir = new File(exportFilesDir + "/series");
         String[] wkFiles = wkDir.list();
-        
-        for (int i = 0; i < wkFiles.length; i++)
+
+        if ( wkFiles != null) 
         {
-            _seriesExportFiles.put(wkFiles[i], "SERIES");
+            for (int i = 0; i < wkFiles.length; i++)
+            {
+                _seriesExportFiles.put(wkFiles[i], "SERIES");
+            }
         }
     }
     

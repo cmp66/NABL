@@ -40,8 +40,8 @@
                 <td><a href="Controller?page=history"><img border="0" src="images/History.gif"/></a></td>
                 <td><a href="Controller?page=draft&amp;year=2020&amp;mode=grid"><img border="0" src="images/Draft.gif"/></a></td>
                 <td><a href="constitution.pdf"><img border="0" src="images/Rules.gif"/></a></td>
-                <td><a href="Controller?page=stats&amp;mode=ShowTeamStats&amp;year=2019&amp;teams=53,48,52,47,3,1,30,9,31,15,45,8,10,41,50,16,51,25"><img border="0" src="images/Stats.gif"/></a></td>
-                <td><a href="Controller?page=stats&amp;mode=Leaders&amp;year=2019"><img border="0" src="images/Leaders.gif"/></a></td>
+                <td><a href="Controller?page=stats&amp;mode=ShowTeamStats&amp;year=2020&amp;teams=53,48,52,47,3,1,30,9,31,15,45,8,10,41,50,16,51,25"><img border="0" src="images/Stats.gif"/></a></td>
+                <td><a href="Controller?page=stats&amp;mode=Leaders&amp;year=2020"><img border="0" src="images/Leaders.gif"/></a></td>
             </tr>
         </table>
         </td>

@@ -19,6 +19,8 @@ jobs:
       with:
         name: sba-jar
         path: SBABase/target/sba.jar
+    - name: configure secrets
+      run: bin/setDbPassword.sh ${{ secrets.POSTGRES_HOST}} ${{ secrets.POSTGRES_PASSWORD}}
     - name: Get Commit SHA 
       id: get_sha
       run: echo ::set-env name=SHORTSHA::$(git rev-parse --short=8 ${{ github.sha }})

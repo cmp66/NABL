@@ -175,6 +175,6 @@ class DraftPickUpdater():
 #updater.importNewPlayersForYear("/Users/cphillips/views/git/NABL/nabl/CardedList2011.csv", 2011)
 #updater.findMissingCardedPlayers()
 #updater.migratePlayers(2014, 2015)
-#updater = DraftPickUpdater()
-#updater.migrateDraftPicks(2019, 2020)
+updater = DraftPickUpdater()
+updater.migrateDraftPicks(2020, 2021)
 

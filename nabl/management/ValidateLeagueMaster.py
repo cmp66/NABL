@@ -120,6 +120,6 @@ class LeagueMaster():
 if __name__ == '__main__':
     master = LeagueMaster()
     #projectRoot = os.environ["PROJECT_ROOT"]
-    master.loadMasterFile(u'./nabl/files/NABL2020_Master.xlsx')
+    master.loadMasterFile(u'./nabl/files/NABL2020_Master_1.xlsx')
     teams = master.getTeamList()
     master.validatePlayersInFile(teams, 2019, 2019, 2015)

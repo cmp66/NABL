@@ -20,7 +20,7 @@ class SiteSearch():
 
         players = []
         print 'looking through responses'
-        for m in re.finditer(r'<strong><a.*href="(/players/\w/\w*.shtml)">', httpResponseData):
+        for m in re.finditer(r'<div class="search-item-url">(\/players\/\w\/\w*.shtml)', httpResponseData):
             url = m.group(1)
             # displayName = re.sub(r'&nbsp;', " ", m.group(2))
             # nameMatch = re.match('(.\w*) (.*)', displayName)
@@ -60,7 +60,7 @@ class SiteSearch():
         # pattern = re.compile('<h1 class="float_left">(\w*)\s([\w\s]*)</h1>', re.UNICODE)
         #name = re.search(r'<span id=player_name itemprop="name" class="bold_text xx_large_text">(.*?)\s(.*?)</span>',
         #                 htmlResponse)
-        name = re.search(r'<h1 itemprop="name">(.*?)\s(.*?)</h1>',
+        name = re.search(r'<h1 itemprop="name">[\s\n\t]*<span>(.*?)\s(.*?)</span>',
                          htmlResponse)
 
         if name is None:

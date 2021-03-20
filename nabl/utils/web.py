@@ -244,17 +244,9 @@ url_string = "https://www.rotowire.com/baseball/ajax/get-more-updates.php?type=c
 print url_string
 browser = Browser()
 #readHTML = browser.browseURL("http://www.rotowire.com/baseball/latestnews.htm")
-<<<<<<< HEAD
-##readHTML = browser.browseURL("https://www.rotowire.com/users/login.php")
-#print readHTML
-#readHTML = browser.openURL("https://www.rotowire.com/baseball/news.php")
-readHTML = browser.openURL(url_string)
-#readHTML = browser.browseURL("https://www.rotowire.com/baseball/news.php")
-=======
 #readHTML = browser.browseURL("https://www.rotowire.com/baseball/news.php")
 readHTML = browser.browseURL("https://www.rotowire.com/users/login.php")
 readHTML = browser.openURL("https://www.rotowire.com/baseball/news.php")
->>>>>>> master
 continueReading = browser.decodePage(readHTML)
 
 

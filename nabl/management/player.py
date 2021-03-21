@@ -45,28 +45,30 @@ class PlayerManager():
             if player.startyear <= startYear:
                 continue
     
-            relativelink = re.sub(r'http://www.baseball-reference.com', "", player.bbreflink)
+            player_link = player.bbreflink
     
-            if relativelink.find("players") == -1:
-                relativelink = "/players" + relativelink
+            #if player_link.find("players") == -1:
+            #    player_link = "/players" + relativelink
             
             #print 'looking up:' + player.firstname + ' ' + player.lastname + 'with link:' + relativelink
             try:
-                bbPlayerData = search.getPlayerData(relativelink)
+                bbPlayerData = search.getPlayerData(player_link)
             except AttributeError:
-                print 'skipping due to error ' + player.firstname + ' ' + player.lastname + 'with link:' + relativelink
+                print 'skipping due to error ' + player.firstname + ' ' + player.lastname + 'with link:' + player_link
                 continue
+        except TypeError:
+                print 'skipping due to error with link:' + player_link
             
             player.firstname = bbPlayerData['firstname'].decode("utf-8")
             player.lastname = bbPlayerData['lastname'].decode("utf-8")
             player.startyear = bbPlayerData['firstyear']
             player.endyear = bbPlayerData['lastyear']
-            player.bbreflink = "http://www.baseball-reference.com" + relativelink
+            player.bbreflink = player_link
             
             if bbPlayerData['position'] and bbPlayerData['position'].find("Pitcher") >= 0:
                 player.position = 'P'
                 
-            #print ' Updating Player: ' + player.firstname + " " + player.lastname
+            print ' Updating Player: ' + player.firstname + " " + player.lastname
             player.save()
             
     def importNewPlayersForYear(self, fileName, year):

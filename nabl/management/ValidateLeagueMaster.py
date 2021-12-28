@@ -42,10 +42,13 @@ class LeagueMaster():
             #print "getting team {}".format(teamname)
 
             if teamname and not u'zz' in teamname:
-                nablTeam = self.getTeamByCity(teamname)
-                if nablTeam:
-                    teams[teamname] = nablTeam
-                else:
+                try:
+                    nablTeam = self.getTeamByCity(teamname)
+                    if nablTeam:
+                        teams[teamname] = nablTeam
+                    else:
+                        print 'cannot find team for ' + teamname
+                except ObjectDoesNotExist:
                     print 'cannot find team for ' + teamname
 
         return teams
@@ -123,6 +126,6 @@ class LeagueMaster():
 if __name__ == '__main__':
     master = LeagueMaster()
     #projectRoot = os.environ["PROJECT_ROOT"]
-    master.loadMasterFile(u'./nabl/files/NABL2020_Master_1.xlsx')
+    master.loadMasterFile(u'./nabl/files/NABL_2021_Master_080121.xlsx')
     teams = master.getTeamList()
-    master.validatePlayersInFile(teams, 2020, 2019, 2015)
+    master.validatePlayersInFile(teams, 2021, 2020, 2015)

@@ -56,8 +56,12 @@ class PlayerManager():
             except AttributeError:
                 print 'skipping due to error ' + player.firstname + ' ' + player.lastname + 'with link:' + player_link
                 continue
-        except TypeError:
+            except TypeError:
                 print 'skipping due to error with link:' + player_link
+                continue
+            except:
+                print 'skipping due to unknown error with link:' + player_link
+                continue
             
             player.firstname = bbPlayerData['firstname'].decode("utf-8")
             player.lastname = bbPlayerData['lastname'].decode("utf-8")
@@ -143,9 +147,9 @@ class PlayerManager():
                     print 'firstname #' + firstname.encode('utf-8') +'# lastname #' + lastname.encode('utf-8') + '#' ' has no player entry using ' + cardedplayer.playername.encode('utf-8')     
                 if len(otherplayers) == 1:
                     otherplayer = otherplayers[0]
-                    newcardedname = otherplayer.firstname + ' ' + otherplayer.lastname
+                    #newcardedname = otherplayer.firstname + ' ' + otherplayer.lastname
                     #print u'updating ' + cardedplayer.playername.encode('utf-8') + u' to ' + newcardedname.encode('utf-8')
-                    cardedplayer.playername = newcardedname 
+                    #cardedplayer.playername = newcardedname 
                     cardedplayer.player = otherplayer
                     cardedplayer.save() 
                     #otherplayer.endyear = cardedseason
@@ -175,8 +179,6 @@ class DraftPickUpdater():
 #playerList = dbPlayerList = updater.findPlayersWithBBrefLinks()
 #updater.updatePlayerList(playerList, 2006, 1990)
 #updater.importNewPlayersForYear("/Users/cphillips/views/git/NABL/nabl/CardedList2011.csv", 2011)
-#updater.findMissingCardedPlayers()
+#updater.findMissingCardedPlayers(2020,2020)
 #updater.migratePlayers(2014, 2015)
-updater = DraftPickUpdater()
-updater.migrateDraftPicks(2020, 2021)
 

@@ -121,7 +121,7 @@ class SiteSearch():
         conn = httplib.HTTPSConnection("www.baseball-reference.com")
         conn.request("GET", relativeUrl)
         response = conn.getresponse().read()
-        print "got player data"
+        #print "got player data"
 
         # print relativeUrl
         playerData = self.getPlayerDataFromPage(response)

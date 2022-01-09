@@ -7,6 +7,6 @@ from player import PlayerManager
 
   
 updater = PlayerManager()
-updater.migratePlayers(2019, 2020)
+updater.migratePlayers(2020, 2021)
     
         

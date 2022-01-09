@@ -6,6 +6,6 @@ Created on Mar 16, 2013
 from player import PlayerManager
 
 updater = PlayerManager()
-playerList = updater.findPlayersWithBBrefLinks();
-updater.updatePlayerList(playerList, 2013, 1993)
+playerList = updater.findPlayersWithBBrefLinks()
+updater.updatePlayerList(playerList, 1950, 1950)
 

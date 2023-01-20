@@ -1,6 +1,6 @@
 Django==1.4.21
 django-tastypie==0.9.14
-mechanize==0.2.5
+mechanize==0.4.6
 mimeparse==0.1.3
 psycopg2==2.7.3.1 
 python-dateutil==2.1
